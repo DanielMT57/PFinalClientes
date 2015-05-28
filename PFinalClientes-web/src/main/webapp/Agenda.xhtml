@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Agenda</title>
+    </h:head>
+    <body>
+        <h:link outcome="Principal" value="Volver"/>
+        <br><br/>
+            Agenda      
+        </br>
+        <h:form>   
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <p:panelGrid columns="2">
+                <p:outputLabel>Id</p:outputLabel>
+                <p:inputText id="tfIdAgenda"  value="" />
+                <p:outputLabel>Fecha</p:outputLabel>
+                <p:inputText id="tfFecha" required="true" value="" />  
+                <p:outputLabel>Hora</p:outputLabel>
+                <p:inputText id="tfHora" required="true" value="" />                
+                <p:outputLabel>Descripcion</p:outputLabel>
+                <p:inputText id="tfdescripcion"  value="" />
+                <p:outputLabel>Id Persona</p:outputLabel>
+                <p:selectOneMenu value="" id="cbxPersona" style="width:75%">
+                    <f:selectItems value="" var="idPersona" itemValue="" itemLabel="$" />
+                </p:selectOneMenu> 
+
+                <p:commandButton value ="Insertar" action ="#{productoBean.crearProducto()}" update="@form"/> 
+                <p:commandButton value ="Buscar" action ="#{productoBean.buscarProducto()}" update="@form"/> 
+                <p:commandButton value ="Actualizar" action ="#{productoBean.actualizarProducto()}" update="@form"/> 
+                <p:commandButton value ="Eliminar" action ="#{productoBean.eliminarProducto()}" update="@form"/>
+
+            </p:panelGrid>   
+        </h:form> 
+    </body>
+</html>

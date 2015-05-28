@@ -10,12 +10,14 @@
     </h:head>
     <h:body>
         <center>
-            Bienvenidos a nuestra aplicacion      
+            Pagina Principal      
             <h:form>
-            <p:panelGrid columns="1">
-                <p:commandButton value="CLick AQui" action="Principal?faces-redirect=true" ajax="false" /> 
-            </p:panelGrid>
-
+                <p:panelGrid columns="1">
+                    <p:commandButton value="Afiliados" id="btAfil" actionListener="Personas?faces-redirect=true" ajax="false" />
+                    <p:commandButton value="Productos" id="btPro" action="Productos?faces-redirect=true" ajax="false" /> 
+                    <p:commandButton value="Agenda" id="btAgen" action="Agenda?faces-redirect=true" ajax="false" /> 
+                    <p:commandButton value="Catalogo" id="btCat" actionListener="Catalogo?faces-redirect=true" ajax="false" /> 
+                </p:panelGrid>
             </h:form> 
             <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
         </center>
