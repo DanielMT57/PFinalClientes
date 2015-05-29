@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Catalogo</title>
+    </h:head>
+    <h:body>
+        <br/> 
+        <h:link outcome="Principal" value="Volver"/>          
+        <h:form>
+            <h:panelGrid columns="3" cellpadding="5">
+                <br>
+                    <p:commandButton value="Ver Pagina" actionListener="#" ajax="false" />
+                 </br>   
+                <p:outputLabel>Id Pagina</p:outputLabel>
+                <p:selectOneMenu value="" id="cbxCiudad" style="width:75%">
+                    <f:selectItems value="" var="ciudad" itemValue="" itemLabel="" />
+                </p:selectOneMenu>  
+                
+            </h:panelGrid>
+            <p:panel header="Lista del Catalogo">              
+                <p:row>
+                </p:row>
+                <p:dataTable  var="ca" value="#{catalogoBean.catalogos}">
+                    <p:column headerText="id">
+                        <h:outputText value="#{ca.id}" />
+                    </p:column>
+                    <p:column headerText="Fecha Inicio">
+                        <h:outputText value="#{ca.fechainicio}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Fecha Fin">
+                        <h:outputText value="#{ca.fechafin}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>   
+                    </p:column>
+                    <p:column headerText="Cantidad Pags">
+                        <h:outputText value="#{ca.cantidadpaginas}" />    
+                    </p:column>
+                    <p:column headerText="Cantidad Productos">
+                        <h:outputText value="#{ca.cantidadproductos}" />    
+                    </p:column>
+                </p:dataTable>
+            </p:panel> 
+        </h:form>
+    </h:body>
+</html>
