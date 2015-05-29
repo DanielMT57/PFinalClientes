@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pedidos</title>
+    </h:head>
+    <h:body>
+        <h:link outcome="index" value="Volver"/>
+        <br><br/>
+            Administracion de Pedidos      
+        </br>
+        <h:form>            
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <p:panelGrid columns="2">
+                <p:outputLabel>Id Pedido</p:outputLabel>
+                <p:inputText id="tfIdPedido"  value="" />
+                <p:outputLabel>Cedula del Afiliado</p:outputLabel>
+                <p:selectOneMenu value="" id="cbxCedulaAfiliado" style="width:75%">
+                    <f:selectItems value="" var="cedAfiliado" itemValue="" itemLabel="" />
+                </p:selectOneMenu>   
+                <p:outputLabel>Estado</p:outputLabel>
+                <p:selectOneMenu value="" id="cbxEstado" style="width:75%">
+                    <f:selectItems value="" var="estado" itemValue="" itemLabel="" />
+                </p:selectOneMenu>
+                <p:outputLabel>Fecha</p:outputLabel>
+                <p:inputText id="tfFecha" value="" />
+                <p:outputLabel>Descripcion</p:outputLabel>
+                <p:inputText id="tfDescripcion"  value="" />
+            </p:panelGrid>  
+            Detalles del pedido           
+            <p:panelGrid columns="2">
+
+                <p:outputLabel>Id del Producto</p:outputLabel>
+                <p:selectOneMenu value="" id="cbxIdProducto" style="width:75%">
+                    <f:selectItems value="" var="niveles" itemValue="" itemLabel="" />
+                </p:selectOneMenu>  
+              
+                <p:outputLabel>Cantidad</p:outputLabel>
+                <p:inputText id="tfCantidad" required="true" value="" />
+
+                <p:outputLabel>Precio Unitario</p:outputLabel>
+                <p:inputText id="tfPrecioUnitario" required="true" value="" />
+            </p:panelGrid>
+            <p:panelGrid columns="4">       
+                <p:commandButton value ="Insertar" action ="#{productoBean.crearProducto()}" update="@form"/> 
+                <p:commandButton value ="Buscar" action ="#{productoBean.buscarProducto()}" update="@form"/> 
+                <p:commandButton value ="Actualizar" action ="#{productoBean.actualizarProducto()}" update="@form"/> 
+                <p:commandButton value ="Eliminar" action ="#{productoBean.eliminarProducto()}" update="@form"/>
+            </p:panelGrid>                 
+        </h:form> 
+    </h:body>
+</html>
