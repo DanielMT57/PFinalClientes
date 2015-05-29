@@ -9,40 +9,41 @@
         <title>Productos</title>
     </h:head>
     <h:body>
+        <br/> 
         <h:link outcome="Principal" value="Volver"/>
-        <br><br/>
-            Productos      
-        </br>
-        <h:form>   
-            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-            <p:panelGrid columns="2">
-                <p:outputLabel>Codigo</p:outputLabel>
-                <p:inputText id="tfCodigo"  value="#{productoBean.id}" />
-                <p:outputLabel>Color</p:outputLabel>
-                <p:inputText id="tfColor"  value="" />  
-                <p:outputLabel>Categoria</p:outputLabel>
-                <p:inputText id="tfCategoria"  value="" />  
-                <p:outputLabel>Marcas</p:outputLabel>
-                <p:inputText id="tfMarcas"  value="" /> 
-                <p:outputLabel>Cantidad</p:outputLabel>
-                <p:inputText id="tfCantidad" value=""/>                
-                <p:outputLabel>Peso</p:outputLabel>
-                <p:inputText id="tfPeso" value="#{productoBean.peso}" />
-                <p:outputLabel>Precio Compra</p:outputLabel>
-                <p:inputText id="tfPrecioCompra"  value="#{productoBean.precioCompra}" />
-                <p:outputLabel>Precio Venta</p:outputLabel>
-                <p:inputText id="tfPrecioVenta"  value="#{productoBean.precioVenta}" />               
-                <p:outputLabel>Descripcion</p:outputLabel>
-                <p:inputText id="tfdescripcion"  value="#{productoBean.descripcion}" />
-
+        <h:form>
+            <p:panel header="Productos">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <h:panelGrid columns="4" cellpadding="3">
+                    <p:outputLabel>Codigo</p:outputLabel>
+                    <p:inputText id="tfCodigo"  value="#{productoBean.id}" />
+                    <p:outputLabel>Color</p:outputLabel>
+                    <p:inputText id="tfColor"  value="" />  
+                    <p:outputLabel>Categoria</p:outputLabel>
+                    <p:inputText id="tfCategoria"  value="" />  
+                    <p:outputLabel>Marcas</p:outputLabel>
+                    <p:inputText id="tfMarcas"  value="" /> 
+                    <p:outputLabel>Cantidad</p:outputLabel>
+                    <p:inputText id="tfCantidad" value=""/>                
+                    <p:outputLabel>Peso</p:outputLabel>
+                    <p:inputText id="tfPeso" value="#{productoBean.peso}" />                      
+                    <p:outputLabel>Precio Compra</p:outputLabel>
+                    <p:inputText id="tfPrecioCompra"  value="#{productoBean.precioCompra}" />
+                    <p:outputLabel>Precio Venta</p:outputLabel>
+                    <p:inputText id="tfPrecioVenta"  value="#{productoBean.precioVenta}" /> 
+                    <p:outputLabel>Descripcion</p:outputLabel>
+                    <p:inputText id="tfdescripcion"  value="#{productoBean.descripcion}" />               
+                </h:panelGrid> 
+            </p:panel>
+            <p:row>
                 <p:commandButton value ="Insertar" action ="#{productoBean.crearProducto()}" update="@form"/> 
                 <p:commandButton value ="Buscar" action ="#{productoBean.buscarProducto()}" update="@form"/> 
                 <p:commandButton value ="Actualizar" action ="#{productoBean.actualizarProducto()}" update="@form"/> 
                 <p:commandButton value ="Eliminar" action ="#{productoBean.eliminarProducto()}" update="@form"/>
-
-            </p:panelGrid>   
+            </p:row>
         </h:form> 
     </h:body>
 </html>
+
 
 
