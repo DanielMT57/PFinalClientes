@@ -24,9 +24,9 @@ import javax.persistence.PersistenceContext;
 
 public class EJBGenericoCliente <T> implements Serializable {
     
-    //@PersistenceContext(name = "PFinalClienteJPAPU")
     
-    	private EntityManager em;
+    @PersistenceContext(name = "PFinalClienteJPAPU")
+    private EntityManager em;
 
 	protected  DAOGenericoCliente dao;
 

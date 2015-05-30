@@ -40,8 +40,7 @@ public class Pedidos implements Serializable {
     @Column(name = "sincronizado")
     private Character sincronizado;
     private String descripcion;
-    @JoinColumn(name = "estado_id", referencedColumnName = "Id")
-    @ManyToOne
+    @Column(name = "estado_id")
     private String estadoId;
     @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
     @ManyToOne
