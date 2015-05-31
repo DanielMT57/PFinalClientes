@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.JoinTable;
 
 /**
  *
@@ -22,6 +21,7 @@ import javax.persistence.JoinTable;
 @Entity
 @Table(name = "Detallepedido")
 public class Detallepedido implements Serializable {
+
     @EmbeddedId
     protected DetallepedidoPK detallepedidoPK;
     @Column(name = "cantidad")
@@ -32,10 +32,10 @@ public class Detallepedido implements Serializable {
     private Character sincronizado;
     @ManyToOne
     @JoinColumn(name = "productos_id", referencedColumnName = "id")
-	private Productos productos;
+    private Productos productos;
     @ManyToOne
     @JoinColumn(name = "pedidos_Id", referencedColumnName = "Id")
-	private Pedidos pedidos;
+    private Pedidos pedidos;
 
     public Detallepedido() {
     }
@@ -96,6 +96,4 @@ public class Detallepedido implements Serializable {
     public void setPedidos(Pedidos pedidos) {
         this.pedidos = pedidos;
     }
-
-   
 }

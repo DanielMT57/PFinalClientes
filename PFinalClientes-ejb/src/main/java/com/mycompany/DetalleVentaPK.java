@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -17,6 +14,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class DetalleVentaPK implements Serializable {
+
     private int ventasId;
     private int productosId;
 

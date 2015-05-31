@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
-
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,95 +25,53 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "VentasClientes")
 public class VentasClientes implements Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
+
+    private static final long serialVersionUID = 1L;
+    @Id
     @Column(name = "Id")
     private int id;
+    //cliente
+    @JoinColumn(name = "cliente", referencedColumnName = "cedula")
+    @ManyToOne
+    private Afiliados afiliadosCedula;
+    @Column(name = "cuotas")
+    private int cuotas;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Column(name = "sincronizado")
-    private Character sincronizado;
-    private String descripcion;
-    private String estadoId;
-    private int saldo;
-    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
-    @ManyToOne
-    private Afiliados afiliadosCedula;
+    @Column(name = "precioTotal")
+    private double precioTotal;
+    @Column(name = "saldo")
+    private double saldo;
+  
+
     @OneToMany(mappedBy = "pedidos")
     private List<DetalleVenta> detalleventaCollection;
 
     @OneToMany(mappedBy = "venta")
-	private List<Abono> abonos;
+    private List<Abono> abonos;
+
     public VentasClientes() {
     }
 
-    
-    
-    
-    public VentasClientes(int id, Date fecha, Character sincronizado,
-			String descripcion, String estadoId, int saldo,
-			Afiliados afiliadosCedula,
-			List<DetalleVenta> detalleventaCollection) {
-		super();
-		this.id = id;
-		this.fecha = fecha;
-		this.sincronizado = sincronizado;
-		this.descripcion = descripcion;
-		this.estadoId = estadoId;
-		this.saldo = saldo;
-		this.afiliadosCedula = afiliadosCedula;
-		this.detalleventaCollection = detalleventaCollection;
-	}
+    public VentasClientes(int id, Afiliados afiliadosCedula, int cuotas, Date fecha, double precioTotal, double saldo, List<DetalleVenta> detalleventaCollection, List<Abono> abonos) {
+        super();
+        this.id = id;
+        this.afiliadosCedula = afiliadosCedula;
+        this.cuotas = cuotas;
+        this.fecha = fecha;
+        this.precioTotal = precioTotal;
+        this.saldo = saldo;
+        this.detalleventaCollection = detalleventaCollection;
+        this.abonos = abonos;
+    }
 
-
-
-
-	public int getSaldo() {
-		return saldo;
-	}
-
-
-
-	public void setSaldo(int saldo) {
-		this.saldo = saldo;
-	}
-
-
-
-	public int getId() {
+    public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public Character getSincronizado() {
-        return sincronizado;
-    }
-
-    public void setSincronizado(Character sincronizado) {
-        this.sincronizado = sincronizado;
-    }
-
-    public String getEstadoId() {
-        return estadoId;
-    }
-
-    public void setEstadoId(String estadoId) {
-        this.estadoId = estadoId;
     }
 
     public Afiliados getAfiliadosCedula() {
@@ -131,29 +82,53 @@ public class VentasClientes implements Serializable {
         this.afiliadosCedula = afiliadosCedula;
     }
 
-     
-	public List<DetalleVenta> getDetalleventaCollection() {
-		return detalleventaCollection;
-	}
+    public int getCuotas() {
+        return cuotas;
+    }
+
+    public void setCuotas(int cuotas) {
+        this.cuotas = cuotas;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public List<DetalleVenta> getDetalleventaCollection() {
+        return detalleventaCollection;
+    }
+
+    public void setDetalleventaCollection(List<DetalleVenta> detalleventaCollection) {
+        this.detalleventaCollection = detalleventaCollection;
+    }
+
+    public List<Abono> getAbonos() {
+        return abonos;
+    }
+
+    public void setAbonos(List<Abono> abonos) {
+        this.abonos = abonos;
+    }
 
 
-
-
-	public void setDetalleventaCollection(List<DetalleVenta> detalleventaCollection) {
-		this.detalleventaCollection = detalleventaCollection;
-	}
-
-
-
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-    
-    
-   
 }

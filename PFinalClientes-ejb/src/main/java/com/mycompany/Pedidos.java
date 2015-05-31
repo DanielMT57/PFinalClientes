@@ -3,23 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,20 +26,24 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Pedidos")
 public class Pedidos implements Serializable {
+
     @Id
     @Column(name = "Id")
     private int id;
+    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
+    @ManyToOne
+    private Afiliados afiliadosCedula;
+    @Column(name = "estado_id")
+    private String estadoId;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Column(name = "sincronizado")
     private Character sincronizado;
+    @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "estado_id")
-    private String estadoId;
-    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
-    @ManyToOne
-    private Afiliados afiliadosCedula;
+
+
     @OneToMany(mappedBy = "pedidos")
     private List<Detallepedido> detallepedidoCollection;
 
@@ -115,8 +114,5 @@ public class Pedidos implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-    
-    
-   
+	}  
 }

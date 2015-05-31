@@ -7,12 +7,9 @@ package com.mycompany;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,7 +23,15 @@ import javax.persistence.Table;
 public class Productos implements Serializable {
 	@Id
 	@Column(name = "id")
-	private int id;
+	private int id;       
+        @Column(name = "color_id")
+	private String color;
+        @Column(name = "categoria_id")
+	private String categoria;
+        @Column(name = "marca_id")
+	private String marca;
+        @Column(name = "Cantidad")
+	private int cantidad;       
 	@Column(name = "peso")
 	private int peso;
 	@Column(name = "precioCompra")
@@ -35,15 +40,6 @@ public class Productos implements Serializable {
 	private double precioVenta;
 	@Column(name = "descripcion")
 	private String descripcion;
-	@ManyToOne()
-	@JoinColumn(name = "color_id")
-	private String colorId;
-	@ManyToOne()
-	@JoinColumn(name = "categoria_id", referencedColumnName = "id")
-	private String categoriaId;
-	@ManyToOne()
-	@JoinColumn(name = "marca_id", referencedColumnName = "id")
-	private String marcaId;
 	@OneToMany(mappedBy = "productos")
 	private List<Detallepedido> detallepedidoProductos;
 	@OneToMany(mappedBy = "productosId")
@@ -53,93 +49,112 @@ public class Productos implements Serializable {
 	@OneToMany(mappedBy = "productos")
 	private List<DetalleVenta> detalleventaProductos;
 
-	public int getId() {
-		return id;
-	}
+    public Productos() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getPeso() {
-		return peso;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPeso(int peso) {
-		this.peso = peso;
-	}
+    public String getColor() {
+        return color;
+    }
 
-	public double getPrecioCompra() {
-		return precioCompra;
-	}
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-	public void setPrecioCompra(double precioCompra) {
-		this.precioCompra = precioCompra;
-	}
+    public String getCategoria() {
+        return categoria;
+    }
 
-	public double getPrecioVenta() {
-		return precioVenta;
-	}
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
-	public void setPrecioVenta(double precioVenta) {
-		this.precioVenta = precioVenta;
-	}
+    public String getMarca() {
+        return marca;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public int getCantidad() {
+        return cantidad;
+    }
 
-	public String getColorId() {
-		return colorId;
-	}
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
-	public void setColorId(String colorId) {
-		this.colorId = colorId;
-	}
+    public int getPeso() {
+        return peso;
+    }
 
-	public String getCategoriaId() {
-		return categoriaId;
-	}
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
 
-	public void setCategoriaId(String categoriaId) {
-		this.categoriaId = categoriaId;
-	}
+    public double getPrecioCompra() {
+        return precioCompra;
+    }
 
-	public String getMarcaId() {
-		return marcaId;
-	}
+    public void setPrecioCompra(double precioCompra) {
+        this.precioCompra = precioCompra;
+    }
 
-	public void setMarcaId(String marcaId) {
-		this.marcaId = marcaId;
-	}
+    public double getPrecioVenta() {
+        return precioVenta;
+    }
 
-	public List<Detallepedido> getDetallepedidoProductos() {
-		return detallepedidoProductos;
-	}
+    public void setPrecioVenta(double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
 
-	public void setDetallepedidoProductos(
-			List<Detallepedido> detallepedidoProductos) {
-		this.detallepedidoProductos = detallepedidoProductos;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public List<Promociones> getPromocionesProductos() {
-		return promocionesProductos;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public void setPromocionesProductos(List<Promociones> promocionesProductos) {
-		this.promocionesProductos = promocionesProductos;
-	}
+    public List<Detallepedido> getDetallepedidoProductos() {
+        return detallepedidoProductos;
+    }
 
-	public List<Areaspagina> getAreaspaginaProductos() {
-		return areaspaginaProductos;
-	}
+    public void setDetallepedidoProductos(List<Detallepedido> detallepedidoProductos) {
+        this.detallepedidoProductos = detallepedidoProductos;
+    }
 
-	public void setAreaspaginaProductos(List<Areaspagina> areaspaginaProductos) {
-		this.areaspaginaProductos = areaspaginaProductos;
-	}
+    public List<Promociones> getPromocionesProductos() {
+        return promocionesProductos;
+    }
 
+    public void setPromocionesProductos(List<Promociones> promocionesProductos) {
+        this.promocionesProductos = promocionesProductos;
+    }
+
+    public List<Areaspagina> getAreaspaginaProductos() {
+        return areaspaginaProductos;
+    }
+
+    public void setAreaspaginaProductos(List<Areaspagina> areaspaginaProductos) {
+        this.areaspaginaProductos = areaspaginaProductos;
+    }
+
+    public List<DetalleVenta> getDetalleventaProductos() {
+        return detalleventaProductos;
+    }
+
+    public void setDetalleventaProductos(List<DetalleVenta> detalleventaProductos) {
+        this.detalleventaProductos = detalleventaProductos;
+    }
+
+	
 }

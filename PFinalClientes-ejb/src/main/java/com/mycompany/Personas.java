@@ -3,24 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
 
 import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -28,13 +22,16 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 @Table(name = "PERSONAS")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Personas implements Serializable {
+
     @Id
     @Column(name = "cedula")
     private int cedula;
     @Column(name = "telefono")
     private Long telefono;
+    @Column(name = "Ciudades_Id")
+    private String ciudadesId;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellidos")
@@ -43,26 +40,13 @@ public class Personas implements Serializable {
     private String direccion;
     @Column(name = "email")
     private String email;
-    @ManyToOne
-    @JoinColumn(name = "ciudadesId_id", referencedColumnName = "id")
-	private String ciudadesId;
     @OneToMany(mappedBy = "persona")
-	private List<Agenda> agendas;
+    private List<Agenda> agendas;
     @OneToOne(mappedBy = "personas")
     private Afiliados afiliados;
+    //VentaClientes?
 
     public Personas() {
-    }
-
-    public Personas(int cedula, Long telefono, String nombre, String apellidos, String direccion, String email, String ciudadesId, Afiliados afiliados) {
-        this.cedula = cedula;
-        this.telefono = telefono;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.direccion = direccion;
-        this.email = email;
-        this.ciudadesId = ciudadesId;
-        this.afiliados = afiliados;
     }
 
     public int getCedula() {
@@ -79,6 +63,14 @@ public class Personas implements Serializable {
 
     public void setTelefono(Long telefono) {
         this.telefono = telefono;
+    }
+
+    public String getCiudadesId() {
+        return ciudadesId;
+    }
+
+    public void setCiudadesId(String ciudadesId) {
+        this.ciudadesId = ciudadesId;
     }
 
     public String getNombre() {
@@ -113,12 +105,12 @@ public class Personas implements Serializable {
         this.email = email;
     }
 
-    public String getCiudadesId() {
-        return ciudadesId;
+    public List<Agenda> getAgendas() {
+        return agendas;
     }
 
-    public void setCiudadesId(String ciudadesId) {
-        this.ciudadesId = ciudadesId;
+    public void setAgendas(List<Agenda> agendas) {
+        this.agendas = agendas;
     }
 
     public Afiliados getAfiliados() {
@@ -129,5 +121,4 @@ public class Personas implements Serializable {
         this.afiliados = afiliados;
     }
 
-    
 }

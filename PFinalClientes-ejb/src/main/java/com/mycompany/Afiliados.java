@@ -3,18 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,7 +18,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author german
@@ -32,8 +27,12 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Afiliados")
 @PrimaryKeyJoinColumn(name = "cedula", referencedColumnName = "cedula")
 public class Afiliados extends Personas implements Serializable {
+    
     @Column(name = "fechaafiliacion")
     @Temporal(TemporalType.DATE)
+    @ManyToOne
+    @JoinColumn(name = "nivel_id", referencedColumnName = "id")
+    private Niveles nivel;
     private Date fechaafiliacion;
     @Column(name = "SINCRONIZADO")
     private Character sincronizado;
@@ -41,41 +40,34 @@ public class Afiliados extends Personas implements Serializable {
     private List<Pedidos> pedidosCollection;
     @OneToOne
     @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
-	private Personas personas;
+    private Personas personas;
     @OneToOne
     @JoinColumn(name = "afiliadosCollection_cedula", referencedColumnName = "cedula")
-	private Afiliados afiliadosCollection;
-    @ManyToOne
-    @JoinColumn(name="nivel_id", referencedColumnName = "id")
-    private Nivel nivel;
+    private Afiliados afiliadosCollection;
+
 
     public Afiliados() {
     }
 
-    public Afiliados( Date fechaafiliacion, Character sincronizado, List<Pedidos> pedidosCollection, Personas personas, Collection<Afiliados> afiliadosCollection, Afiliados afiliadosCedula, Nivel nivel) {
+    public Afiliados(Niveles nivel, Date fechaafiliacion, Character sincronizado, List<Pedidos> pedidosCollection, Personas personas, Afiliados afiliadosCollection, int cedula, Long telefono, String nombre, String apellidos, String direccion, String email, String ciudadesId, Afiliados afiliados) {
+        super();
+        this.nivel = nivel;
         this.fechaafiliacion = fechaafiliacion;
         this.sincronizado = sincronizado;
         this.pedidosCollection = pedidosCollection;
         this.personas = personas;
-        this.nivel=nivel;
-    }
-
-    public Nivel getNivel() {
-        return nivel;
-    }
-
-    public void setNivel(Nivel nivel) {
-        this.nivel = nivel;
-    }
-
-    public Afiliados getAfiliadosCollection() {
-        return afiliadosCollection;
-    }
-
-    public void setAfiliadosCollection(Afiliados afiliadosCollection) {
         this.afiliadosCollection = afiliadosCollection;
     }
     
+    
+
+    public Niveles getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Niveles nivel) {
+        this.nivel = nivel;
+    }
 
     public Date getFechaafiliacion() {
         return fechaafiliacion;
@@ -108,6 +100,16 @@ public class Afiliados extends Personas implements Serializable {
     public void setPersonas(Personas personas) {
         this.personas = personas;
     }
+
+    public Afiliados getAfiliadosCollection() {
+        return afiliadosCollection;
+    }
+
+    public void setAfiliadosCollection(Afiliados afiliadosCollection) {
+        this.afiliadosCollection = afiliadosCollection;
+    }
+
+
 
    
 }

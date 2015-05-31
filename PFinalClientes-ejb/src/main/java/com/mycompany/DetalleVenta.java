@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.JoinTable;
 
 /**
  *
@@ -22,27 +21,36 @@ import javax.persistence.JoinTable;
 @Entity
 @Table(name = "DetalleVenta")
 public class DetalleVenta implements Serializable {
+
+    @ManyToOne
+    @JoinColumn(name = "productos_id", referencedColumnName = "id")
+    private Productos productos;
+    @ManyToOne
+    @JoinColumn(name = "venta_Id", referencedColumnName = "Id")
+    private VentasClientes venta;
     @EmbeddedId
     protected DetallepedidoPK detallepedidoPK;
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "preciounitario")
     private double preciounitario;
-    @ManyToOne
-    @JoinColumn(name = "productos_id", referencedColumnName = "id")
-	private Productos productos;
-    @ManyToOne
-    @JoinColumn(name = "venta_Id", referencedColumnName = "Id")
-	private VentasClientes venta;
 
     public DetalleVenta() {
     }
 
-    public DetalleVenta(DetallepedidoPK detallepedidoPK, int cantidad, double preciounitario, Productos productos, VentasClientes venta) {
-        this.detallepedidoPK = detallepedidoPK;
-        this.cantidad = cantidad;
-        this.preciounitario = preciounitario;
+    public Productos getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Productos productos) {
         this.productos = productos;
+    }
+
+    public VentasClientes getVenta() {
+        return venta;
+    }
+
+    public void setVenta(VentasClientes venta) {
         this.venta = venta;
     }
 
@@ -69,22 +77,6 @@ public class DetalleVenta implements Serializable {
     public void setPreciounitario(double preciounitario) {
         this.preciounitario = preciounitario;
     }
-
-    public Productos getProductos() {
-        return productos;
-    }
-
-    public void setProductos(Productos productos) {
-        this.productos = productos;
-    }
-
-	public VentasClientes getVenta() {
-		return venta;
-	}
-
-	public void setVenta(VentasClientes venta) {
-		this.venta = venta;
-	}
 
    
 }

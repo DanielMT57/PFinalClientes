@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
 
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,17 +24,18 @@ import javax.persistence.JoinTable;
 @Entity
 @Table(name = "Paginas")
 public class Paginas implements Serializable {
+
     @Id
     @Column(name = "Id")
     private int id;
-    @Column(name = "numero")
-    private BigInteger numero;
     @ManyToOne
     @JoinColumn(name = "categoriaId_id", referencedColumnName = "id")
-	private String categoriaId;
+    private String categoriaId;
     @ManyToOne
     @JoinColumn(name = "catalogoId_Id", referencedColumnName = "Id")
-	private Catalogo catalogoId;
+    private Catalogo catalogoId;
+    @Column(name = "numero")
+    private BigInteger numero;
     @OneToMany(mappedBy = "paginasId")
     private List<Areaspagina> areaspaginaCollection;
 
@@ -89,7 +88,5 @@ public class Paginas implements Serializable {
 
     public void setAreaspaginaCollection(List<Areaspagina> areaspaginaCollection) {
         this.areaspaginaCollection = areaspaginaCollection;
-    }
-
-    
+    }    
 }

@@ -18,29 +18,27 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="niveles")
-public class Nivel implements Serializable{
+public class Niveles implements Serializable{
     @Id
     private int id;
     private String descripcion;
     private int numVentas;
     private int numAfiliados;
     private int descuento;
-    private int gananciaRed;
     @OneToMany(mappedBy = "nivel")
     private List<Afiliados> afiliados;
 
     
 
-    public Nivel(int id, String descripcion, int numVentas, int numAfiliados, int descuento, int gananciaRed) {
+    public Niveles(int id, String descripcion, int numVentas, int numAfiliados, int descuento, int gananciaRed) {
         this.id = id;
         this.descripcion = descripcion;
         this.numVentas = numVentas;
         this.numAfiliados = numAfiliados;
         this.descuento = descuento;
-        this.gananciaRed = gananciaRed;
     }
 
-    public Nivel() {
+    public Niveles() {
     }
 
     public int getId() {
@@ -82,14 +80,6 @@ public class Nivel implements Serializable{
     public void setDescuento(int descuento) {
         this.descuento = descuento;
     }
-
-    public int getGananciaRed() {
-        return gananciaRed;
-    }
-
-    public void setGananciaRed(int gananciaRed) {
-        this.gananciaRed = gananciaRed;
-    }
     
     public List<Afiliados> getAfiliados() {
         return afiliados;
@@ -97,8 +87,5 @@ public class Nivel implements Serializable{
 
     public void setAfiliados(List<Afiliados> afiliados) {
         this.afiliados = afiliados;
-    }
-    
-    
-    
+    }   
 }

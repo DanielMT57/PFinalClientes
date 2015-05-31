@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,18 +20,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Areaspagina")
 public class Areaspagina implements Serializable {
+
     @Id
     @Column(name = "Id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "promocionesId_Id", referencedColumnName = "Id")
-	private Promociones promocionesId;
+    @JoinColumn(name = "paginasId_Id", referencedColumnName = "Id")
+    private Paginas paginasId;
     @ManyToOne
     @JoinColumn(name = "productos_Id", referencedColumnName = "Id")
     private Productos productosId;
     @ManyToOne
-    @JoinColumn(name = "paginasId_Id", referencedColumnName = "Id")
-	private Paginas paginasId;
+    @JoinColumn(name = "promocionesId_Id", referencedColumnName = "Id")
+    private Promociones promocionesId;
 
     public Areaspagina() {
     }
