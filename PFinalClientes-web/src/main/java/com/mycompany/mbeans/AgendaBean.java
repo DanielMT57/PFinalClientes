@@ -23,6 +23,8 @@ import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -43,6 +45,12 @@ public class AgendaBean implements Serializable {
 
     @EJB
     private AfiliadosEJB afiliadoEJB;
+    
+    @EJB
+    private  AgendaEJB agendaEJB;
+    
+    private PersonaEJB personaEJB;
+ 
 
     private List<Afiliados> afiliados;
 
@@ -105,5 +113,30 @@ public class AgendaBean implements Serializable {
         afiliados = afiliadoEJB.listarTodos();
 
     }
+    
+     public void crearAgenda() {
+        Agenda a = new Agenda();
+        a.setId(id);
+       a.setFecha(fecha);
+       a.setHora(hora);
+       a.setDescripcion(descripcion);
+       a.setPersona(afiliadoEJB.buscar(personaId));
+      
+  
+        agendaEJB.crear(a);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
+        System.out.println("ha insertado correctamente");
+        limpiar();
+
+    }
+
+    private void limpiar() {
+        setDescripcion(null);
+        setFecha(null);
+        setHora(null);
+        setId(0);
+        
+    }
+
 
 }
