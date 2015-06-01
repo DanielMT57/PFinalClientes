@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,9 +27,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "Id", referencedColumnName = "Id")
 public class Despachos extends Pedidos implements Serializable {
     
-    @ManyToOne
-    @JoinColumn(name = "pedidos_id", referencedColumnName = "id")
-    private Pedidos pedidos;    
+     @Id
+    @Column(name = "Pedidos_id")
+    private int id;  
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -40,20 +41,14 @@ public class Despachos extends Pedidos implements Serializable {
     public Despachos() {
     }
 
-    public Despachos(Pedidos pedidos, Date fecha, double valor, Character sincronizado) {
-        this.pedidos = pedidos;
+    public Despachos( Date fecha, double valor, Character sincronizado, int id) {
         this.fecha = fecha;
         this.valor = valor;
         this.sincronizado = sincronizado;
+        this.id=id;
     }
 
-    public Pedidos getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Pedidos pedidos) {
-        this.pedidos = pedidos;
-    }
+    
 
     public double getValor() {
         return valor;
