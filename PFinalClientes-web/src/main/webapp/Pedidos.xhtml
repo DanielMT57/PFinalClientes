@@ -21,10 +21,7 @@
                     <p:selectOneMenu value="#{pedidoManagedBean.idAfiliado}" id="cbxCedulaAfiliado" style="width:75%">
                         <f:selectItems value="#{pedidoManagedBean.afiliados}" var="ced" itemValue="${ced.cedula}" itemLabel="${ced.nombre}" />
                     </p:selectOneMenu>   
-                    <p:outputLabel>Estado</p:outputLabel>
-                    <p:selectOneMenu value="" id="cbxEstado" style="width:75%">
-                        <f:selectItems value="" var="estado" itemValue="" itemLabel="" />
-                    </p:selectOneMenu>
+                 
                     <p:outputLabel for="mask" value="Fecha :" />
                     <p:calendar id="mask" value="#{pedidoManagedBean.fecha}" pattern="dd-MM-yyyy"  />
                     <p:outputLabel>Descripcion</p:outputLabel>
@@ -62,37 +59,7 @@
 
         </h:form> 
 
-
         <h:form>
-
-            <p:dataTable  var="pe" value="#{pedidoManagedBean.pedidos}">
-                <p:column headerText="Pedido_id">
-                    <h:outputText value="#{pe.id}" />
-                </p:column>
-
-                <p:column headerText="Afiliado">
-                    <h:outputText value="#{pe.afiliadosCedula.nombre}" />      
-                </p:column>
-
-
-                <p:column headerText="Estado">
-                    <h:outputText value="#{pe.estadoId.descripcion}" />    
-
-                </p:column>
-
-                <p:column headerText="Fecha">
-                    <h:outputText value="#{pe.fecha}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>   
-                </p:column>
-
-                <p:column headerText="Descripcion">
-                    <h:outputText value="#{pe.descripcion}" />    
-
-                </p:column>
-
-
-            </p:dataTable> 
 
         </h:form>
     </h:body>
