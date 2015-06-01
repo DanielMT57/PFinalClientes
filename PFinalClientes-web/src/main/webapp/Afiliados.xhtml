@@ -12,42 +12,88 @@
         <br/> 
         <h:form>
             <p:commandButton value="Volver" action="Principal" immediate="true"/> 
+             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
             <p:panel header="Administracion de Personas">               
                 <h:panelGrid columns="4" cellpadding="3">
                     <p:outputLabel>Cedula</p:outputLabel>
                     <p:inputText id="tfCedula" required="true" value="#{personaBean.cedula}" />
                     <p:outputLabel>Ciudad</p:outputLabel>
-                    <p:selectOneMenu value="#{personaBean.idCiudades}" id="cbxCiudad" style="width:75%">
-                        <f:selectItems value="#{personaBean.ciudades}" var="ciudad" itemValue="${ciudad.id}" itemLabel="${ciudad.descripcion}" />
+                    <p:selectOneMenu value="#{personaBean.ciudad}" id="cbxCiudad" style="width:75%">
+                        <f:selectItems value="#{personaBean.ciudades}" var="ciudad" itemValue="${ciudad}" itemLabel="${ciudad}" />
                     </p:selectOneMenu>  
                     <p:outputLabel>Telefono</p:outputLabel>
-                    <p:inputText id="tfTelefono" required="true" value="#{personaBean.telefono}" />
+                    <p:inputText id="tfTelefono"  value="#{personaBean.telefono}" />
                     <p:outputLabel>Nombre</p:outputLabel>
-                    <p:inputText id="tfNombre" required="true" value="#{personaBean.nombre}" />
+                    <p:inputText id="tfNombre"  value="#{personaBean.nombre}" />
                     <p:outputLabel>Apellido</p:outputLabel>
-                    <p:inputText id="tfApellido" required="true" value="#{personaBean.apellido}" />
+                    <p:inputText id="tfApellido"  value="#{personaBean.apellido}" />
                     <p:outputLabel>Direccion</p:outputLabel>
-                    <p:inputText id="tfDireccion" required="true" value="#{personaBean.direccion}" />
+                    <p:inputText id="tfDireccion"  value="#{personaBean.direccion}" />
                     <p:outputLabel>EMail</p:outputLabel>
-                    <p:inputText id="tfEMail" required="true" value="#{personaBean.email}" />
+                    <p:inputText id="tfEMail" value="#{personaBean.email}" />
                     <p:outputLabel>Nivel</p:outputLabel>
-                    <p:selectOneMenu value="" id="cbxNivel" style="width:75%">
-                        <f:selectItems value="" var="ciudad" itemValue="" itemLabel="" />
+                    <p:selectOneMenu value="#{personaBean.idNiveles}" id="cbxNivel" style="width:75%">
+                        <f:selectItems value="#{personaBean.niveles}" var="ni" itemValue="${ni.id}" itemLabel="${ni.descripcion}" />
                     </p:selectOneMenu>  
-                    <p:outputLabel>Fecha Afiliacion</p:outputLabel>
-                    <p:inputText id="tfFechaAfiliacion" required="true" value="#{afiliadoBean.fechaAfiliacion}" />                   
+                  
+                          <p:outputLabel for="mask2" value="Fecha afiliacion:" />
+                    <p:calendar id="mask2" value="#{personaBean.fechaAfiliacion}" pattern="dd-MM-yyyy"  />
                      <p:outputLabel>Afiliador</p:outputLabel>
-                    <p:selectOneMenu value="#" id="cbxAfiliador" style="width:75%">
-                        <f:selectItems value="#" var="ciudad" itemValue="" itemLabel="" />
+                     <p:selectOneMenu value="#{personaBean.personaId}" id="cbxAfiliador" style="width:75%">
+                         <f:selectItems value="#{personaBean.personas}" var="per" itemValue="${per.cedula}" itemLabel="${per.nombre}" />
                     </p:selectOneMenu> 
                     <br></br>
                 </h:panelGrid>
             </p:panel>
             <p:row>
-                <p:commandButton value="Insertar" actionListener="#{catalogoBean.crearCatalogo()}" ajax="false"/>
-                <p:commandButton value="Buscar" actionListener="#{catalogoBean.crearCatalogo()}" ajax="false" />
+                <p:commandButton value="Insertar" actionListener="#{personaBean.crearPersonas()}" ajax="false"/>
+                <p:commandButton value="Buscar" actionListener="#{personaBean.buscarPersona()}" ajax="false" />
                 <p:commandButton value="Actualizar" actionListener="#{catalogoBean.crearCatalogo()}" ajax="false" />
             </p:row>
+             
+             
+
+             <p:dataTable  var="af" value="#{personaBean.afiliados}">
+                <p:column headerText="ced">
+                    <h:outputText value="#{af.cedula}" />
+                </p:column>
+
+                <p:column headerText="Ciudad">
+                    <h:outputText value="#{af.ciudadesId}" />      
+                </p:column>
+
+
+                <p:column headerText="telefono">
+                    <h:outputText value="#{af.telefono}" />    
+
+                </p:column>
+
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{af.nombre}" />    
+
+                </p:column>
+
+
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{af.apellidos}" />    
+
+                </p:column>
+
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{af.direccion}" />    
+
+                </p:column>
+
+
+
+                <p:column headerText="Email">
+                    <h:outputText value="#{af.email}" />    
+
+                </p:column>
+
+
+            </p:dataTable>
         </h:form> 
     </h:body>
 </html>

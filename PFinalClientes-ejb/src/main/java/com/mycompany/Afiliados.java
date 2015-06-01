@@ -35,7 +35,7 @@ public class Afiliados extends Personas  {
     private Afiliados afiliadosCollection;
     
     @ManyToOne
-    @JoinColumn(name = "nivel_id", referencedColumnName = "id")
+    @JoinColumn(name = "niveles_id", referencedColumnName = "id")
     private Niveles nivel;
     
     @Column(name = "fechaafiliacion")
@@ -60,12 +60,13 @@ public class Afiliados extends Personas  {
     }
 
     public Afiliados(Niveles nivel, Date fechaafiliacion, Character sincronizado, List<Pedidos> pedidosCollection, Afiliados afiliadosCollection, int cedula, Long telefono, String nombre, String apellidos, String direccion, String email, String ciudadesId, Afiliados afiliados) {
-        super();
+        super(cedula, ciudadesId, telefono, nombre, apellidos, direccion, email, null, null);
         this.nivel = nivel;
         this.fechaafiliacion = fechaafiliacion;
         this.sincronizado = sincronizado;
         this.pedidosCollection = pedidosCollection;
         this.afiliadosCollection = afiliadosCollection;
+        
     }
     
     
