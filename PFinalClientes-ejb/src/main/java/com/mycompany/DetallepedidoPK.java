@@ -7,7 +7,9 @@
 package com.mycompany;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 
 /**
  *
@@ -15,10 +17,14 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class DetallepedidoPK implements Serializable {
+
+     @Column(name = "pedidos_id")
     private int pedidosId;
+    @Column(name = "productos_id")
     private int productosId;
 
     public DetallepedidoPK() {
+        //pruebas ...
     }
 
     public DetallepedidoPK(int pedidosId, int productosId) {
@@ -41,5 +47,7 @@ public class DetallepedidoPK implements Serializable {
     public void setProductosId(int productosId) {
         this.productosId = productosId;
     }
+
+
 
 }

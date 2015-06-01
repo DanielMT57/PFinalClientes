@@ -6,7 +6,10 @@
 package com.mycompany;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -14,24 +17,19 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class DetalleVentaPK implements Serializable {
-
-    private int ventasId;
+    
+    
+    @Column(name = "productos_id")
     private int productosId;
+    @Column(name = "VentasClientes_id")
+    private int ventasClientesId;
 
     public DetalleVentaPK() {
     }
 
-    public DetalleVentaPK(int ventasId, int productosId) {
-        this.ventasId = ventasId;
+    public DetalleVentaPK(int productosId, int ventasClientesId) {
         this.productosId = productosId;
-    }
-
-    public int getventasId() {
-        return ventasId;
-    }
-
-    public void setventasId(int ventasId) {
-        this.ventasId = ventasId;
+        this.ventasClientesId = ventasClientesId;
     }
 
     public int getProductosId() {
@@ -42,4 +40,11 @@ public class DetalleVentaPK implements Serializable {
         this.productosId = productosId;
     }
 
+    public int getVentasClientesId() {
+        return ventasClientesId;
+    }
+
+    public void setVentasClientesId(int ventasClientesId) {
+        this.ventasClientesId = ventasClientesId;
+    }
 }

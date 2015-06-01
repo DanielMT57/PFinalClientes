@@ -11,6 +11,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -21,20 +22,23 @@ import javax.persistence.Table;
 @Table(name = "Detallepedido")
 public class Detallepedido implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "productos_id", referencedColumnName = "id")
-    private Productos productos;
-    @ManyToOne
-    @JoinColumn(name = "pedidos_Id", referencedColumnName = "Id")
-    private Pedidos pedidos;
-    @EmbeddedId
-    protected DetallepedidoPK detallepedidoPK;
+   @EmbeddedId
+    protected DetallepedidoPK detallepedidoPK;   
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "preciounitario")
     private double preciounitario;
     @Column(name = "sincronizado")
     private Character sincronizado;
+    @MapsId("productosId")
+    @ManyToOne
+    @JoinColumn(name = "productos_id", referencedColumnName = "id")
+    private Productos productos;
+    @MapsId("pedidosId")
+    @ManyToOne
+    @JoinColumn(name = "Pedidos_id", referencedColumnName = "Id")
+    private Pedidos pedidos;
+
 
     public Detallepedido() {
     }

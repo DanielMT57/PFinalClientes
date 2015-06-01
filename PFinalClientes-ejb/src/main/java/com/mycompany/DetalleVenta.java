@@ -12,6 +12,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -21,15 +22,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DetalleVenta")
 public class DetalleVenta implements Serializable {
-
-    @ManyToOne
-    @JoinColumn(name = "productos_id", referencedColumnName = "id")
-    private Productos productos;
-    @ManyToOne
-    @JoinColumn(name = "venta_Id", referencedColumnName = "Id")
-    private VentasClientes venta;
+    
     @EmbeddedId
-    protected DetallepedidoPK detallepedidoPK;
+    protected DetalleVentaPK DetalleVentaPK;
+
+    @MapsId("ventasClientesid")
+    @ManyToOne
+    @JoinColumn(name = "VentasClientes_id", referencedColumnName = "id")
+    private VentasClientes ventasClientes;
+    @MapsId("productosId")
+    @ManyToOne
+    @JoinColumn(name = "Productos_id", referencedColumnName = "Id")
+    private Productos productos;
+    
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "preciounitario")
@@ -38,28 +43,36 @@ public class DetalleVenta implements Serializable {
     public DetalleVenta() {
     }
 
+    public DetalleVenta(DetalleVentaPK DetalleVentaPK, VentasClientes ventasClientes, Productos productos, int cantidad, double preciounitario) {
+        this.DetalleVentaPK = DetalleVentaPK;
+        this.ventasClientes = ventasClientes;
+        this.productos = productos;
+        this.cantidad = cantidad;
+        this.preciounitario = preciounitario;
+    }
+
+    public DetalleVentaPK getDetalleVentaPK() {
+        return DetalleVentaPK;
+    }
+
+    public void setDetalleVentaPK(DetalleVentaPK DetalleVentaPK) {
+        this.DetalleVentaPK = DetalleVentaPK;
+    }
+
+    public VentasClientes getVentasClientes() {
+        return ventasClientes;
+    }
+
+    public void setVentasClientes(VentasClientes ventasClientes) {
+        this.ventasClientes = ventasClientes;
+    }
+
     public Productos getProductos() {
         return productos;
     }
 
     public void setProductos(Productos productos) {
         this.productos = productos;
-    }
-
-    public VentasClientes getVenta() {
-        return venta;
-    }
-
-    public void setVenta(VentasClientes venta) {
-        this.venta = venta;
-    }
-
-    public DetallepedidoPK getDetallepedidoPK() {
-        return detallepedidoPK;
-    }
-
-    public void setDetallepedidoPK(DetallepedidoPK detallepedidoPK) {
-        this.detallepedidoPK = detallepedidoPK;
     }
 
     public int getCantidad() {
@@ -78,5 +91,6 @@ public class DetalleVenta implements Serializable {
         this.preciounitario = preciounitario;
     }
 
+   
    
 }
