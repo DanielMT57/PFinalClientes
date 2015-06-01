@@ -212,28 +212,6 @@ public class PersonaBean implements Serializable {
         //   limpiar ();
 
     }
-//
-//    public void actualizarPersona() {
-//        Afiliados a= afiliadosEJB.buscar(cedula);
-//        a.setCedula(cedula);
-//        a.setCiudadesId(ciudadesEJB.buscar(idCiudades));
-//        a.setNombre(nombre);
-//        a.setApellidos(apellido);
-//        a.setDireccion(direccion);
-//        a.setEmail(email);
-//        a.setTelefono(telefono);
-//        idNiveles = a.getNivel().getId();
-//        fechaAfiliacion = a.getFechaafiliacion();
-//        a.setNivel(nivelesEJB.buscar(idNiveles));
-//        a.setFechaafiliacion(fechaAfiliacion);
-//        afiliadosEJB.editar(a);
-//
-//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha actualizado correctamente  "));
-//        // System.out.println("ha actualizado correctamente");
-//        limpiar();
-//
-//    }
-//    
      private List<Personas> personas;
           private List<String> ciudades;
 
@@ -289,6 +267,35 @@ public class PersonaBean implements Serializable {
     public List<Afiliados> getAfiliados() {
         afiliados=afiliadosEJB.listarTodos();
         return afiliados;
+    }
+    
+    
+        public void editarPersonas() {
+
+        Personas pe = new Personas();
+        pe.setCedula(cedula);
+        pe.setTelefono(telefono);
+        pe.setNombre(nombre);
+        pe.setApellidos(apellido);
+        pe.setDireccion(direccion);
+        pe.setEmail(email);
+        pe.setCiudadesId(ciudad);
+        
+//        personasEJB.crear(pe);
+        Afiliados a= afiliadosEJB.buscar(personaId);
+        //pe=personasEJB.buscar(pe.getCedula());
+        Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, a);
+    
+
+//        af.setCedula(pe.getCedula());
+//        af.setNivel();
+
+        afiliadosEJB.editar(af);
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
+        System.out.println("ha insertado correctamente");
+        limpiar();
+
     }
     
     
