@@ -42,7 +42,7 @@ public class Pedidos implements Serializable {
     private Character sincronizado;
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(mappedBy = "pedidos_id")
+    @OneToMany(mappedBy = "pedidos")
     private List<Detallepedido> detallepedidoCollection;
 
     public Pedidos() {

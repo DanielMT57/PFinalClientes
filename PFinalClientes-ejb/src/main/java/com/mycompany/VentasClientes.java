@@ -30,7 +30,6 @@ public class VentasClientes implements Serializable {
     @Id
     @Column(name = "Id")
     private int id;
- 
     @ManyToOne
     @JoinColumn(name = "cliente", referencedColumnName = "cedula")   
     private Personas personaCliente;
@@ -43,9 +42,9 @@ public class VentasClientes implements Serializable {
     private double precioTotal;
     @Column(name = "saldo")
     private double saldo;    
-    @OneToMany(mappedBy = "VentasClientes_id")
+    @OneToMany(mappedBy = "VentasClientes")
     private List<DetalleVenta> detalleventaCollection;   
-    @OneToMany(mappedBy = "VentasClientes_id")
+    @OneToMany(mappedBy = "Venta")
     private List<Abono> abonos;
 
     public VentasClientes() {

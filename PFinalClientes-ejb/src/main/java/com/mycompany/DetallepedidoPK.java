@@ -22,7 +22,6 @@ public class DetallepedidoPK implements Serializable {
     private int pedidosId;
     @Column(name = "productos_id")
     private int productosId;
-
     public DetallepedidoPK() {
         //pruebas ...
     }

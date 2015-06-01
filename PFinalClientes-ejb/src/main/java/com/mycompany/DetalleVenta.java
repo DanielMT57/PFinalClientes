@@ -26,10 +26,11 @@ public class DetalleVenta implements Serializable {
     @EmbeddedId
     protected DetalleVentaPK DetalleVentaPK;
 
-    @MapsId("ventasClientesid")
+    @MapsId("ventasClientesId")
     @ManyToOne
-    @JoinColumn(name = "VentasClientes_id", referencedColumnName = "id")
+    @JoinColumn(name = "ventasclientes_id", referencedColumnName = "Id")
     private VentasClientes ventasClientes;
+    
     @MapsId("productosId")
     @ManyToOne
     @JoinColumn(name = "Productos_id", referencedColumnName = "Id")

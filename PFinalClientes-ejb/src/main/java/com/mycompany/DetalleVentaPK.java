@@ -21,7 +21,7 @@ public class DetalleVentaPK implements Serializable {
     
     @Column(name = "productos_id")
     private int productosId;
-    @Column(name = "VentasClientes_id")
+    @Column(name = "ventasClientes_id")
     private int ventasClientesId;
 
     public DetalleVentaPK() {

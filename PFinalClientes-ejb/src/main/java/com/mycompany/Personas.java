@@ -44,7 +44,7 @@ public class Personas implements Serializable {
     private List<Agenda> agendas;
     @OneToOne(mappedBy = "cedula")
     private Afiliados afiliados;
-    @OneToMany(mappedBy = "Cliente")
+    @OneToMany(mappedBy = "personaCliente")
     private List<VentasClientes> ventaClientes;
     
     //VentaClientes?

@@ -31,7 +31,7 @@ public class Niveles implements Serializable{
     private int numAfiliados;
     @Column(name = "descuento")
     private int descuento;
-    @OneToMany(mappedBy = "niveles_id")
+    @OneToMany(mappedBy = "nivel")
     private List<Afiliados> afiliados;
 
     public Niveles() {

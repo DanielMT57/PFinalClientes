@@ -40,13 +40,13 @@ public class Productos implements Serializable {
 	private double precioVenta;
 	@Column(name = "descripcion")
 	private String descripcion;
-	@OneToMany(mappedBy = "productos_id")
+	@OneToMany(mappedBy = "productos")
 	private List<Detallepedido> detallepedidoProductos;
-	@OneToMany(mappedBy = "productos_Id")
+	@OneToMany(mappedBy = "productosId")
 	private List<Promociones> promocionesProductos;
-	@OneToMany(mappedBy = "productos_Id")
+	@OneToMany(mappedBy = "productosId")
 	private List<Areaspagina> areasPaginaProductos;
-	@OneToMany(mappedBy = "productos_Id")
+	@OneToMany(mappedBy = "productos")
 	private List<DetalleVenta> detalleventaProductos;
 
     public Productos() {

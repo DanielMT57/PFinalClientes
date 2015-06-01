@@ -43,7 +43,7 @@ public class Promociones implements Serializable {
     private Short descuento;
     @Column(name = "preciofinal")
     private int preciofinal;
-    @OneToMany(mappedBy = "promociones_Id")
+    @OneToMany(mappedBy = "promocionesId")
     private List<Areaspagina> areaspaginaCollection;
 
     public Promociones() {
