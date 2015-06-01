@@ -47,5 +47,45 @@ public class Paginas implements Serializable {
         this.areaspaginaCollection = areaspaginaCollection;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCategoria_Id() {
+        return categoria_Id;
+    }
+
+    public void setCategoria_Id(String categoria_Id) {
+        this.categoria_Id = categoria_Id;
+    }
+
+    public Catalogo getCatalogoId() {
+        return catalogoId;
+    }
+
+    public void setCatalogoId(Catalogo catalogoId) {
+        this.catalogoId = catalogoId;
+    }
+
+    public BigInteger getNumero() {
+        return numero;
+    }
+
+    public void setNumero(BigInteger numero) {
+        this.numero = numero;
+    }
+
+    public List<Areaspagina> getAreaspaginaCollection() {
+        return areaspaginaCollection;
+    }
+
+    public void setAreaspaginaCollection(List<Areaspagina> areaspaginaCollection) {
+        this.areaspaginaCollection = areaspaginaCollection;
+    }
+
    
 }

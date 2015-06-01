@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pagina</title>
+    </h:head>
+    <h:body>
+        <br/> 
+        <h:link outcome="Catalogo" value="Volver a Catalogo"/>    
+        
+        <h:form>
+<p:commandButton value="Areas" action="Areas" immediate="true"/> 
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <p:panel header="Administracion de Paginas">              
+                <h:panelGrid columns="4" cellpadding="3">
+                  
+
+                </h:panelGrid>
+
+            </p:panel> 
+           
+            <p:dataTable  var="pa" value="#{paginaBean.paginas}">
+                <p:column headerText="id">
+                    <h:outputText value="#{pa.id}" />
+                </p:column>
+
+
+                <p:column headerText="Categoria">
+                    <h:outputText value="#{pa.categoria_Id}" />    
+                </p:column>
+                <p:column headerText="Numero catalogo">
+                    <h:outputText value="#{pa.catalogoId.id}" />    
+                </p:column>
+
+                <p:column headerText="Numero  Paginas">
+                    <h:outputText value="#{pa.numero}" />    
+                </p:column>
+            </p:dataTable>
+
+        </h:form>   
+    </h:body>
+</html>
