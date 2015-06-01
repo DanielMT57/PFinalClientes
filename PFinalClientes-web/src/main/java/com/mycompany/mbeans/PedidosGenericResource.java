@@ -7,7 +7,7 @@ package com.mycompany.mbeans;
 
 import com.mycompany.Pedidos;
 import javax.ejb.EJB;
-import com.mycompany.sessionbeans.PedidosClinteEJB;
+import com.mycompany.sessionbeans.PedidosClienteEJB;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -29,7 +29,7 @@ import javax.enterprise.context.RequestScoped;
 public class PedidosGenericResource {
     
     @EJB
-    PedidosClinteEJB pc;
+    PedidosClienteEJB pc;
     
 
     @Context

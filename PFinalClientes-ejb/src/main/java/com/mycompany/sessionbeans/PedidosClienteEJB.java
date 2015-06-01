@@ -15,7 +15,7 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class PedidosClinteEJB extends EJBGenericoCliente<Pedidos>{
+public class PedidosClienteEJB extends EJBGenericoCliente<Pedidos>{
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

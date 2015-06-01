@@ -14,7 +14,7 @@ import com.mycompany.Productos;
 import com.mycompany.sessionbeans.AfiliadosEJB;
 
 import com.mycompany.sessionbeans.ProductoClientesEJB;
-import com.mycompany.sessionbeans.PedidosClinteEJB;
+import com.mycompany.sessionbeans.PedidosClienteEJB;
 import com.mycompany.sessionbeans.DetallePedidoEJB;
 
 import java.io.Serializable;
@@ -62,7 +62,7 @@ public class pedidoManagedBean implements Serializable {
 
 
     @EJB
-    private PedidosClinteEJB pedidoEJB;
+    private PedidosClienteEJB pedidoEJB;
 
     @EJB
     private DetallePedidoEJB detallepedidoEJB;
