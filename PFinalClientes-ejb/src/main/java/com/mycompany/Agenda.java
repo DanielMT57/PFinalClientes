@@ -14,10 +14,14 @@ import static javax.persistence.TemporalType.TIME;
 
 public class Agenda implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "id")
     private int id;
+    @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    @Column(name = "hora")
     @Temporal(TIME)
     private Date hora;
     @Column(name = "descripcion")
@@ -25,7 +29,7 @@ public class Agenda implements Serializable {
     @ManyToOne
     @JoinColumn(name = "persona_cedula", referencedColumnName = "cedula")
     private Personas persona;
-    private static final long serialVersionUID = 1L;
+    
 
 	public Agenda() {
 		super();

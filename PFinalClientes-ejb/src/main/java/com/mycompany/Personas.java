@@ -28,10 +28,10 @@ public class Personas implements Serializable {
     @Id
     @Column(name = "cedula")
     private int cedula;
-    @Column(name = "telefono")
-    private Long telefono;
     @Column(name = "Ciudades_Id")
     private String ciudadesId;
+    @Column(name = "telefono")
+    private Long telefono;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellidos")
@@ -40,13 +40,29 @@ public class Personas implements Serializable {
     private String direccion;
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "persona")
+    @OneToMany(mappedBy = "Personas_cedula")
     private List<Agenda> agendas;
-    @OneToOne(mappedBy = "personas")
+    @OneToOne(mappedBy = "cedula")
     private Afiliados afiliados;
+    @OneToMany(mappedBy = "Cliente")
+    private List<VentasClientes> ventaClientes;
+    
     //VentaClientes?
 
     public Personas() {
+    }
+
+    public Personas(int cedula, String ciudadesId, Long telefono, String nombre, String apellidos, String direccion, String email, List<Agenda> agendas, Afiliados afiliados, List<VentasClientes> ventaClientes) {
+        this.cedula = cedula;
+        this.ciudadesId = ciudadesId;
+        this.telefono = telefono;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.email = email;
+        this.agendas = agendas;
+        this.afiliados = afiliados;
+        this.ventaClientes = ventaClientes;
     }
 
     public int getCedula() {
@@ -57,20 +73,20 @@ public class Personas implements Serializable {
         this.cedula = cedula;
     }
 
-    public Long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
-    }
-
     public String getCiudadesId() {
         return ciudadesId;
     }
 
     public void setCiudadesId(String ciudadesId) {
         this.ciudadesId = ciudadesId;
+    }
+
+    public Long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Long telefono) {
+        this.telefono = telefono;
     }
 
     public String getNombre() {
@@ -121,4 +137,14 @@ public class Personas implements Serializable {
         this.afiliados = afiliados;
     }
 
+    public List<VentasClientes> getVentaClientes() {
+        return ventaClientes;
+    }
+
+    public void setVentaClientes(List<VentasClientes> ventaClientes) {
+        this.ventaClientes = ventaClientes;
+    }
+
+    
+   
 }

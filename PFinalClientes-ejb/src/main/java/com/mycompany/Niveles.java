@@ -7,6 +7,7 @@ package com.mycompany;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,25 +21,31 @@ import javax.persistence.Table;
 @Table(name="niveles")
 public class Niveles implements Serializable{
     @Id
+    @Column(name = "id")
     private int id;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "NumVentas")
     private int numVentas;
+    @Column(name = "NumAfiliados")
     private int numAfiliados;
+    @Column(name = "descuento")
     private int descuento;
-    @OneToMany(mappedBy = "nivel")
+    @OneToMany(mappedBy = "niveles_id")
     private List<Afiliados> afiliados;
 
+    public Niveles() {
+    }
+    
     
 
-    public Niveles(int id, String descripcion, int numVentas, int numAfiliados, int descuento, int gananciaRed) {
+    public Niveles(int id, String descripcion, int numVentas, int numAfiliados, int descuento, List<Afiliados> afiliados) {
         this.id = id;
         this.descripcion = descripcion;
         this.numVentas = numVentas;
         this.numAfiliados = numAfiliados;
         this.descuento = descuento;
-    }
-
-    public Niveles() {
+        this.afiliados = afiliados;
     }
 
     public int getId() {
@@ -80,12 +87,12 @@ public class Niveles implements Serializable{
     public void setDescuento(int descuento) {
         this.descuento = descuento;
     }
-    
+
     public List<Afiliados> getAfiliados() {
         return afiliados;
     }
 
     public void setAfiliados(List<Afiliados> afiliados) {
         this.afiliados = afiliados;
-    }   
+    }  
 }

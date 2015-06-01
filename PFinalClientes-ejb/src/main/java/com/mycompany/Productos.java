@@ -40,16 +40,32 @@ public class Productos implements Serializable {
 	private double precioVenta;
 	@Column(name = "descripcion")
 	private String descripcion;
-	@OneToMany(mappedBy = "productos")
+	@OneToMany(mappedBy = "productos_id")
 	private List<Detallepedido> detallepedidoProductos;
-	@OneToMany(mappedBy = "productosId")
+	@OneToMany(mappedBy = "productos_Id")
 	private List<Promociones> promocionesProductos;
-	@OneToMany(mappedBy = "productosId")
-	private List<Areaspagina> areaspaginaProductos;
-	@OneToMany(mappedBy = "productos")
+	@OneToMany(mappedBy = "productos_Id")
+	private List<Areaspagina> areasPaginaProductos;
+	@OneToMany(mappedBy = "productos_Id")
 	private List<DetalleVenta> detalleventaProductos;
 
     public Productos() {
+    }
+
+    public Productos(int id, String color, String categoria, String marca, int cantidad, int peso, double precioCompra, double precioVenta, String descripcion, List<Detallepedido> detallepedidoProductos, List<Promociones> promocionesProductos, List<Areaspagina> areasPaginaProductos, List<DetalleVenta> detalleventaProductos) {
+        this.id = id;
+        this.color = color;
+        this.categoria = categoria;
+        this.marca = marca;
+        this.cantidad = cantidad;
+        this.peso = peso;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.descripcion = descripcion;
+        this.detallepedidoProductos = detallepedidoProductos;
+        this.promocionesProductos = promocionesProductos;
+        this.areasPaginaProductos = areasPaginaProductos;
+        this.detalleventaProductos = detalleventaProductos;
     }
 
     public int getId() {
@@ -140,12 +156,12 @@ public class Productos implements Serializable {
         this.promocionesProductos = promocionesProductos;
     }
 
-    public List<Areaspagina> getAreaspaginaProductos() {
-        return areaspaginaProductos;
+    public List<Areaspagina> getAreasPaginaProductos() {
+        return areasPaginaProductos;
     }
 
-    public void setAreaspaginaProductos(List<Areaspagina> areaspaginaProductos) {
-        this.areaspaginaProductos = areaspaginaProductos;
+    public void setAreasPaginaProductos(List<Areaspagina> areasPaginaProductos) {
+        this.areasPaginaProductos = areasPaginaProductos;
     }
 
     public List<DetalleVenta> getDetalleventaProductos() {
@@ -155,6 +171,8 @@ public class Productos implements Serializable {
     public void setDetalleventaProductos(List<DetalleVenta> detalleventaProductos) {
         this.detalleventaProductos = detalleventaProductos;
     }
+    
+    
 
 	
 }

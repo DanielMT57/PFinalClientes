@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
-import static javax.persistence.TemporalType.DATE;
 
 /**
  * Entity implementation class for Entity: Abono
@@ -14,40 +13,51 @@ import static javax.persistence.TemporalType.DATE;
 
 public class Abono implements Serializable {
 
-	   
-	@Id
-	private int id;
-	@Temporal(DATE)
-	private Date fecha;
-	private int pago;
-	@ManyToOne
-	@JoinColumn(name = "venta_Id", referencedColumnName = "Id")
-	private VentasClientes venta;
-	private static final long serialVersionUID = 1L;
+    @Id
+    private int id;
+    @ManyToOne
+    @JoinColumn(name = "ventasClientes_Id", referencedColumnName = "Id")
+    private VentasClientes venta;
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    @Column(name = "pago")
+    private int pago;
+    private static final long serialVersionUID = 1L;
 
-	public Abono() {
-		super();
-	}   
-	public int getId() {
-		return this.id;
-	}
+    public Abono() {
+        super();
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}   
-	public Date getFecha() {
-		return this.fecha;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}   
-	public int getPago() {
-		return this.pago;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPago(int pago) {
-		this.pago = pago;
-	}
-   
+    public VentasClientes getVenta() {
+        return venta;
+    }
+
+    public void setVenta(VentasClientes venta) {
+        this.venta = venta;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getPago() {
+        return pago;
+    }
+
+    public void setPago(int pago) {
+        this.pago = pago;
+    }   
 }

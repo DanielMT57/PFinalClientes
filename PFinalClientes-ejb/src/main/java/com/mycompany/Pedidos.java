@@ -30,10 +30,10 @@ public class Pedidos implements Serializable {
     @Id
     @Column(name = "Id")
     private int id;
-    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
+    @JoinColumn(name = "Afiliados_cedula", referencedColumnName = "cedula")
     @ManyToOne
     private Afiliados afiliadosCedula;
-    @Column(name = "estado_id")
+    @Column(name = "Estado_id")
     private String estadoId;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
@@ -42,9 +42,7 @@ public class Pedidos implements Serializable {
     private Character sincronizado;
     @Column(name = "descripcion")
     private String descripcion;
-
-
-    @OneToMany(mappedBy = "pedidos")
+    @OneToMany(mappedBy = "pedidos_id")
     private List<Detallepedido> detallepedidoCollection;
 
     public Pedidos() {

@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +26,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "Id", referencedColumnName = "Id")
 public class Despachos extends Pedidos implements Serializable {
     
+    @ManyToOne
+    @JoinColumn(name = "pedidos_id", referencedColumnName = "id")
+    private Pedidos pedidos;    
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -35,19 +40,19 @@ public class Despachos extends Pedidos implements Serializable {
     public Despachos() {
     }
 
-    public Despachos( Date fecha, double valor, Character sincronizado) {
+    public Despachos(Pedidos pedidos, Date fecha, double valor, Character sincronizado) {
+        this.pedidos = pedidos;
         this.fecha = fecha;
         this.valor = valor;
         this.sincronizado = sincronizado;
     }
 
-
-    public Date getFecha() {
-        return fecha;
+    public Pedidos getPedidos() {
+        return pedidos;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setPedidos(Pedidos pedidos) {
+        this.pedidos = pedidos;
     }
 
     public double getValor() {
@@ -56,13 +61,5 @@ public class Despachos extends Pedidos implements Serializable {
 
     public void setValor(double valor) {
         this.valor = valor;
-    }
-
-    public Character getSincronizado() {
-        return sincronizado;
-    }
-
-    public void setSincronizado(Character sincronizado) {
-        this.sincronizado = sincronizado;
     } 
 }

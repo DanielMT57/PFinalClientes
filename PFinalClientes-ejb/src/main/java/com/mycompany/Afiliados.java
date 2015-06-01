@@ -28,22 +28,28 @@ import javax.persistence.TemporalType;
 @PrimaryKeyJoinColumn(name = "cedula", referencedColumnName = "cedula")
 public class Afiliados extends Personas implements Serializable {
     
-    @Column(name = "fechaafiliacion")
-    @Temporal(TemporalType.DATE)
+    @OneToOne
+    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
+    private Afiliados afiliadosCollection;
+    
     @ManyToOne
     @JoinColumn(name = "nivel_id", referencedColumnName = "id")
     private Niveles nivel;
-    private Date fechaafiliacion;
+    
+    @Column(name = "fechaafiliacion")
+    @Temporal(TemporalType.DATE)
+     private Date fechaafiliacion;
+
+   
     @Column(name = "SINCRONIZADO")
     private Character sincronizado;
-    @OneToMany(mappedBy = "afiliadosCedula")
+    
+    @OneToMany(mappedBy = "afiliados_Cedula")
     private List<Pedidos> pedidosCollection;
+    
     @OneToOne
     @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
     private Personas personas;
-    @OneToOne
-    @JoinColumn(name = "afiliadosCollection_cedula", referencedColumnName = "cedula")
-    private Afiliados afiliadosCollection;
 
 
     public Afiliados() {
@@ -109,7 +115,4 @@ public class Afiliados extends Personas implements Serializable {
         this.afiliadosCollection = afiliadosCollection;
     }
 
-
-
-   
 }

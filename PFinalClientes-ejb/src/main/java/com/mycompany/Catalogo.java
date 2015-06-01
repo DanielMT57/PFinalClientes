@@ -39,19 +39,22 @@ public class Catalogo implements Serializable {
     private BigInteger cantidadpaginas;
     @Column(name = "cantidadproductos")
     private BigInteger cantidadproductos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catalogoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catalogo_Id")
     private Collection<Paginas> paginasCollection;
+    @Column(name = "sincronizado")
+    private int sincronizado;
 
     public Catalogo() {
     }
 
-    public Catalogo(int id, Date fechainicio, Date fechafin, BigInteger cantidadpaginas, BigInteger cantidadproductos, Collection<Paginas> paginasCollection) {
+    public Catalogo(int id, Date fechainicio, Date fechafin, BigInteger cantidadpaginas, BigInteger cantidadproductos, Collection<Paginas> paginasCollection, int sincronizado) {
         this.id = id;
         this.fechainicio = fechainicio;
         this.fechafin = fechafin;
         this.cantidadpaginas = cantidadpaginas;
         this.cantidadproductos = cantidadproductos;
         this.paginasCollection = paginasCollection;
+        this.sincronizado = sincronizado;
     }
 
     public int getId() {
@@ -102,5 +105,11 @@ public class Catalogo implements Serializable {
         this.paginasCollection = paginasCollection;
     }
 
-  
+    public int getSincronizado() {
+        return sincronizado;
+    }
+
+    public void setSincronizado(int sincronizado) {
+        this.sincronizado = sincronizado;
+    }
 }

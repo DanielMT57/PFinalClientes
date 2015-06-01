@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinTable;
 
 /**
  *
@@ -29,10 +28,10 @@ public class Paginas implements Serializable {
     @Column(name = "Id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "categoriaId_id", referencedColumnName = "id")
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private String categoriaId;
     @ManyToOne
-    @JoinColumn(name = "catalogoId_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "catalogo_Id", referencedColumnName = "Id")
     private Catalogo catalogoId;
     @Column(name = "numero")
     private BigInteger numero;

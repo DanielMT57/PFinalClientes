@@ -30,7 +30,7 @@ public class Promociones implements Serializable {
     @Column(name = "Id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "productosId_id", referencedColumnName = "id")
+    @JoinColumn(name = "productos_id", referencedColumnName = "id")
     private Productos productosId;
     @Column(name = "cantidad")
     private int cantidad;   
@@ -43,7 +43,7 @@ public class Promociones implements Serializable {
     private Short descuento;
     @Column(name = "preciofinal")
     private int preciofinal;
-    @OneToMany(mappedBy = "promocionesId")
+    @OneToMany(mappedBy = "promociones_Id")
     private List<Areaspagina> areaspaginaCollection;
 
     public Promociones() {
@@ -123,6 +123,5 @@ public class Promociones implements Serializable {
     public void setAreaspaginaCollection(List<Areaspagina> areaspaginaCollection) {
         this.areaspaginaCollection = areaspaginaCollection;
     }
-
-   
+ 
 }

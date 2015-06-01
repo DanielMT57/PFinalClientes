@@ -25,13 +25,13 @@ public class Areaspagina implements Serializable {
     @Column(name = "Id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "paginasId_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "paginas_Id", referencedColumnName = "Id")
     private Paginas paginasId;
     @ManyToOne
     @JoinColumn(name = "productos_Id", referencedColumnName = "Id")
     private Productos productosId;
     @ManyToOne
-    @JoinColumn(name = "promocionesId_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "promociones_Id", referencedColumnName = "Id")
     private Promociones promocionesId;
 
     public Areaspagina() {

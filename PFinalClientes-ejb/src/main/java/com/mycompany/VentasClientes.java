@@ -25,15 +25,15 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "VentasClientes")
 public class VentasClientes implements Serializable {
-
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "Id")
     private int id;
-    //cliente
-    @JoinColumn(name = "cliente", referencedColumnName = "cedula")
+ 
     @ManyToOne
-    private Afiliados afiliadosCedula;
+    @JoinColumn(name = "cliente", referencedColumnName = "cedula")   
+    private Personas personaCliente;
     @Column(name = "cuotas")
     private int cuotas;
     @Column(name = "fecha")
@@ -42,22 +42,18 @@ public class VentasClientes implements Serializable {
     @Column(name = "precioTotal")
     private double precioTotal;
     @Column(name = "saldo")
-    private double saldo;
-  
-
-    @OneToMany(mappedBy = "pedidos")
-    private List<DetalleVenta> detalleventaCollection;
-
-    @OneToMany(mappedBy = "venta")
+    private double saldo;    
+    @OneToMany(mappedBy = "VentasClintes_id")
+    private List<DetalleVenta> detalleventaCollection;   
+    @OneToMany(mappedBy = "VentasClintes_id")
     private List<Abono> abonos;
 
     public VentasClientes() {
     }
 
-    public VentasClientes(int id, Afiliados afiliadosCedula, int cuotas, Date fecha, double precioTotal, double saldo, List<DetalleVenta> detalleventaCollection, List<Abono> abonos) {
-        super();
+    public VentasClientes(int id, Personas personaCliente, int cuotas, Date fecha, double precioTotal, double saldo, List<DetalleVenta> detalleventaCollection, List<Abono> abonos) {
         this.id = id;
-        this.afiliadosCedula = afiliadosCedula;
+        this.personaCliente = personaCliente;
         this.cuotas = cuotas;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
@@ -74,12 +70,12 @@ public class VentasClientes implements Serializable {
         this.id = id;
     }
 
-    public Afiliados getAfiliadosCedula() {
-        return afiliadosCedula;
+    public Personas getPersonaCliente() {
+        return personaCliente;
     }
 
-    public void setAfiliadosCedula(Afiliados afiliadosCedula) {
-        this.afiliadosCedula = afiliadosCedula;
+    public void setPersonaCliente(Personas personaCliente) {
+        this.personaCliente = personaCliente;
     }
 
     public int getCuotas() {
@@ -129,6 +125,5 @@ public class VentasClientes implements Serializable {
     public void setAbonos(List<Abono> abonos) {
         this.abonos = abonos;
     }
-
-
+ 
 }
