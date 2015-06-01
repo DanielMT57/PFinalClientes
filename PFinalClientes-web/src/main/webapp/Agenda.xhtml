@@ -33,11 +33,48 @@
                 </h:panelGrid> 
                 <p:row>
                     <p:commandButton value ="Insertar" action ="#{AgendaBean.crearAgenda()}" update="@form"/> 
-                    <p:commandButton value ="Buscar" action ="#{productoBean.buscarProducto()}" update="@form"/> 
-                    <p:commandButton value ="Actualizar" action ="#{productoBean.actualizarProducto()}" update="@form"/> 
-                    <p:commandButton value ="Eliminar" action ="#{productoBean.eliminarProducto()}" update="@form"/>           
+                    <p:commandButton value ="Buscar" action ="#{AgendaBean.buscarAgenda()}" update="@form"/> 
+                    <p:commandButton value ="Actualizar" action ="#{AgendaBean.editarAgenda()}" update="@form"/> 
+                    <p:commandButton value ="Eliminar" action ="#{AgendaBean.eliminarAgenda()}" update="@form"/>           
                 </p:row>   
             </p:panel>
+            
+            
+            
+             <p:dataTable  var="ag" value="#{AgendaBean.agendas}">
+                <p:column headerText="id">
+                    <h:outputText value="#{ag.id}" />
+                </p:column>
+
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{ag.descripcion}" />      
+                </p:column>
+                 
+                   <p:column headerText="Fecha ">
+                       <h:outputText value="#{ag.fecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                       
+                </p:column>
+                 
+                   <p:column headerText="Hora">
+                       <h:outputText value="#{ag.fecha}">
+                     <f:convertDateTime pattern="HH:mm a" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column headerText="Persona">
+                    <h:outputText value="#{ag.persona.nombre}" />    
+
+                </p:column>
+
+
+
+
+
+
+            </p:dataTable>
         </h:form> 
     </h:body>
 </html>

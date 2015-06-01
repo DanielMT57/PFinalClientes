@@ -8,6 +8,7 @@ package com.mycompany.mbeans;
 import com.mycompany.Afiliados;
 import com.mycompany.Agenda;
 import com.mycompany.Catalogo;
+import com.mycompany.Personas;
 import com.mycompany.Productos;
 import com.mycompany.sessionbeans.AfiliadosEJB;
 import com.mycompany.sessionbeans.AgendaEJB;
@@ -45,14 +46,15 @@ public class AgendaBean implements Serializable {
 
     @EJB
     private AfiliadosEJB afiliadoEJB;
-    
+
     @EJB
-    private  AgendaEJB agendaEJB;
-    
+    private AgendaEJB agendaEJB;
+
     private PersonaEJB personaEJB;
- 
 
     private List<Afiliados> afiliados;
+
+    private List<Agenda> agendas;
 
     private int id;
     private Date fecha;
@@ -113,20 +115,30 @@ public class AgendaBean implements Serializable {
         afiliados = afiliadoEJB.listarTodos();
 
     }
-    
-     public void crearAgenda() {
-        Agenda a = new Agenda();
-        a.setId(id);
-       a.setFecha(fecha);
-       a.setHora(hora);
-       a.setDescripcion(descripcion);
-       a.setPersona(afiliadoEJB.buscar(personaId));
-      
-  
-        agendaEJB.crear(a);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
-        System.out.println("ha insertado correctamente");
-        limpiar();
+
+    public List<Agenda> getAgendas() {
+        agendas = agendaEJB.listarTodos();
+        return agendas;
+    }
+
+    public void crearAgenda() {
+        try {
+            Agenda a = new Agenda();
+            a.setId(id);
+            a.setFecha(fecha);
+            a.setHora(hora);
+            a.setDescripcion(descripcion);
+            a.setPersona(afiliadoEJB.buscar(personaId));
+
+            agendaEJB.crear(a);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
+            System.out.println("ha insertado correctamente");
+            limpiar();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No se ha podido insertar "));
+
+            e.getMessage();
+        }
 
     }
 
@@ -135,8 +147,61 @@ public class AgendaBean implements Serializable {
         setFecha(null);
         setHora(null);
         setId(0);
-        
+
     }
 
+    public void buscarAgenda() {
+        Agenda a = agendaEJB.buscar(id);
 
+        if (a != null) {
+
+            fecha = a.getFecha();
+            hora = a.getFecha();
+            descripcion = a.getDescripcion();
+            personaId = a.getPersona().getCedula();
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha encontrado correctamente "));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informacion", "No se encontro nada "));
+        }
+
+        System.out.println("ha encontrado  correctamente");
+    }
+
+    public void editarAgenda() {
+        try {
+            Agenda a = new Agenda();
+            a.setId(id);
+            a.setFecha(fecha);
+            a.setHora(hora);
+            a.setDescripcion(descripcion);
+            a.setPersona(afiliadoEJB.buscar(personaId));
+
+            agendaEJB.editar(a);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
+            System.out.println("ha insertado correctamente");
+            limpiar();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No se ha podido insertar "));
+
+            e.getMessage();
+        }
+
+    }
+
+    public void eliminarAgenda() {
+        try {
+            Agenda a = agendaEJB.buscar(id);
+
+            agendaEJB.eliminar(a);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha eliminado correctamente "));
+            System.out.println("ha eliminado  correctamente");
+            limpiar();
+        } catch (Exception e) {
+            e.getMessage();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "no se ha podido eliminar  "));
+
+        }
+
+    }
 }
