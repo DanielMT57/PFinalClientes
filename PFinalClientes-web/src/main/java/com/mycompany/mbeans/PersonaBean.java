@@ -271,31 +271,24 @@ public class PersonaBean implements Serializable {
     
     
         public void editarPersonas() {
-
-        Personas pe = new Personas();
-        pe.setCedula(cedula);
-        pe.setTelefono(telefono);
-        pe.setNombre(nombre);
-        pe.setApellidos(apellido);
-        pe.setDireccion(direccion);
-        pe.setEmail(email);
-        pe.setCiudadesId(ciudad);
-        
-//        personasEJB.crear(pe);
-        Afiliados a= afiliadosEJB.buscar(personaId);
-        //pe=personasEJB.buscar(pe.getCedula());
-        Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, a);
-    
-
-//        af.setCedula(pe.getCedula());
-//        af.setNivel();
-
-        afiliadosEJB.editar(af);
-
+            
+        Afiliados a= afiliadosEJB.buscar(cedula);
+        a.setCedula(cedula);
+        a.setCiudadesId(ciudad);
+        a.setNombre(nombre);
+        a.setApellidos(apellido);
+        a.setDireccion(direccion);
+        a.setEmail(email);
+        a.setTelefono(telefono);
+        idNiveles = a.getNivel().getId();
+        fechaAfiliacion = a.getFechaafiliacion();
+        a.setNivel(nivelesEJB.buscar(idNiveles));
+        a.setFechaafiliacion(fechaAfiliacion);
+        a.setSincronizado('0');
+        afiliadosEJB.editar(a);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
         System.out.println("ha insertado correctamente");
         limpiar();
-
     }
     
     
