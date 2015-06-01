@@ -43,9 +43,9 @@ public class VentasClientes implements Serializable {
     private double precioTotal;
     @Column(name = "saldo")
     private double saldo;    
-    @OneToMany(mappedBy = "VentasClintes_id")
+    @OneToMany(mappedBy = "VentasClientes_id")
     private List<DetalleVenta> detalleventaCollection;   
-    @OneToMany(mappedBy = "VentasClintes_id")
+    @OneToMany(mappedBy = "VentasClientes_id")
     private List<Abono> abonos;
 
     public VentasClientes() {

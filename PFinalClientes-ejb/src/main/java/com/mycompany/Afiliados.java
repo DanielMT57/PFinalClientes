@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Afiliados")
 @PrimaryKeyJoinColumn(name = "cedula", referencedColumnName = "cedula")
-public class Afiliados extends Personas implements Serializable {
+public class Afiliados extends Personas  {
     
     @OneToOne
     @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
@@ -46,12 +46,14 @@ public class Afiliados extends Personas implements Serializable {
     
     @OneToMany(mappedBy = "afiliados_Cedula")
     private List<Pedidos> pedidosCollection;
-    
+
     @OneToOne
     @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
     private Personas personas;
 
-
+    //    @OneToOne
+//    @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
+//	private Personas personas;
     public Afiliados() {
     }
 

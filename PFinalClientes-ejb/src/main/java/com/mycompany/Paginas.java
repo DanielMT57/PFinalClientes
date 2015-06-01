@@ -27,9 +27,7 @@ public class Paginas implements Serializable {
     @Id
     @Column(name = "Id")
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
-    private String categoriaId;
+    private String categoria_Id;
     @ManyToOne
     @JoinColumn(name = "catalogo_Id", referencedColumnName = "Id")
     private Catalogo catalogoId;
@@ -41,51 +39,13 @@ public class Paginas implements Serializable {
     public Paginas() {
     }
 
-    public Paginas(int id, BigInteger numero, String categoriaId, Catalogo catalogoId, List<Areaspagina> areaspaginaCollection) {
+    public Paginas(int id, String categoria_Id, Catalogo catalogoId, BigInteger numero, List<Areaspagina> areaspaginaCollection) {
         this.id = id;
-        this.numero = numero;
-        this.categoriaId = categoriaId;
+        this.categoria_Id = categoria_Id;
         this.catalogoId = catalogoId;
+        this.numero = numero;
         this.areaspaginaCollection = areaspaginaCollection;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public BigInteger getNumero() {
-        return numero;
-    }
-
-    public void setNumero(BigInteger numero) {
-        this.numero = numero;
-    }
-
-    public String getCategoriaId() {
-        return categoriaId;
-    }
-
-    public void setCategoriaId(String categoriaId) {
-        this.categoriaId = categoriaId;
-    }
-
-    public Catalogo getCatalogoId() {
-        return catalogoId;
-    }
-
-    public void setCatalogoId(Catalogo catalogoId) {
-        this.catalogoId = catalogoId;
-    }
-
-    public List<Areaspagina> getAreaspaginaCollection() {
-        return areaspaginaCollection;
-    }
-
-    public void setAreaspaginaCollection(List<Areaspagina> areaspaginaCollection) {
-        this.areaspaginaCollection = areaspaginaCollection;
-    }    
+   
 }

@@ -83,6 +83,7 @@ public class EJBGenericoCliente <T> implements Serializable {
 	 * @return
 	 */
 	public List<T> listarTodos() {
+                System.out.print("entro");
 		return dao.listarTodos(getType());
 	}
 

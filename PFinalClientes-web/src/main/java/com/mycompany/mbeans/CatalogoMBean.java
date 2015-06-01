@@ -14,7 +14,6 @@ import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.view.ViewScoped;
 
 /**
@@ -35,7 +34,8 @@ public class CatalogoMBean implements Serializable {
     
     @EJB
     private CatalogoClienteEJB catalogClienteEJB;
-
+ 
+    
     public int getId() {
         return id;
     }
@@ -92,7 +92,6 @@ public class CatalogoMBean implements Serializable {
         return catalogos;
     }
 
-   
 
     private void limpiar() {
         setId(0);
