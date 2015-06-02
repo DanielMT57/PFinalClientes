@@ -15,7 +15,7 @@ and open the template in the editor.
     </h:head>
     <h:body>   
         <h:form>
-            <p:commandButton value="Volver" action="Principal" immediate="true"/> 
+            <p:commandButton value="Volver" action="Principal" immediate="true"/>            
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
             <p:panel header="VENTAS DE LOS CLIENTES">
                 <p:panelGrid columns="2">
@@ -34,28 +34,24 @@ and open the template in the editor.
                     <p:outputLabel>Saldo</p:outputLabel>
                     <p:inputText id="tfSaldo"  value="" />
                 </p:panelGrid></p:panel>
-                <p:panel header="DETALLE DE LAS VENTAS">                
-                <p:panelGrid columns="2">
+            <p:panel header="DETALLE DE LAS VENTAS">                
+                <p:panelGrid columns="4">
                     <p:outputLabel>Id del Producto</p:outputLabel>
                     <p:selectOneMenu value="" id="cbxIdProducto" style="width:75%">
                         <f:selectItems value="" var="niveles" itemValue="" itemLabel="" />
                     </p:selectOneMenu>  
                     <p:outputLabel>Cantidad</p:outputLabel>
-                    <p:inputText id="tfCantidad" required="true" value="" />
-
+                    <p:inputText id="tfCantidad"  value="" />
                     <p:outputLabel>Precio Unitario</p:outputLabel>
-                    <p:inputText id="tfPrecioUnitario" required="true" value="" />
+                    <p:inputText id="tfPrecioUnitario" value="" />
                 </p:panelGrid>
             </p:panel>  
             <p:row>
                 <p:commandButton value="Insertar" actionListener="#" ajax="false"/>
                 <p:commandButton value="Buscar" actionListener="#" ajax="false" />
-                <p:commandButton value="Actualizar" actionListener="#" ajax="false" />
-                
-            </p:row>           
-        </h:form>
-        <h:form>
-        <p:commandButton value="Abonos" action="Abonos?faces-redirect=true"/> 
-        </h:form>
+                <p:commandButton value="Actualizar" actionListener="#" ajax="false" /> 
+                <p:commandButton value="Ver Abonos" action="Abonos" immediate="true"/>   
+            </p:row>             
+        </h:form>        
     </h:body>
 </html>
