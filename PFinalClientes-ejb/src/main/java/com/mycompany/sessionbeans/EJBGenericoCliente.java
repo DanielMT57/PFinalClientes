@@ -135,4 +135,10 @@ public class EJBGenericoCliente <T> implements Serializable {
 		return null;
 	}
 
+    public EntityManager getEm() {
+        return em;
+    }
+        
+        
+
 }

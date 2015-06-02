@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -25,9 +26,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Afiliados")
+@NamedQuery(name=Afiliados.BUSCAR_CIUDADES, query = "Select distinct a.ciudadesId from Afiliados a")
 @PrimaryKeyJoinColumn(name = "cedula", referencedColumnName = "cedula")
 public class Afiliados extends Personas  {
-    
+    public final static String BUSCAR_CIUDADES="Afiliado.buscarCiudades";
     @OneToOne
     @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
     private Afiliados afiliadosCollection;
