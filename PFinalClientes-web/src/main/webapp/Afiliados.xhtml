@@ -35,7 +35,11 @@
                         <f:selectItems value="" var="ciudad" itemValue="" itemLabel="" />
                     </p:selectOneMenu>  
                     <p:outputLabel>Fecha Afiliacion</p:outputLabel>
-                    <p:inputText id="tfFechaAfiliacion" required="true" value="#{afiliadoBean.fechaAfiliacion}" />
+                    <p:inputText id="tfFechaAfiliacion" required="true" value="#{afiliadoBean.fechaAfiliacion}" />                   
+                     <p:outputLabel>Afiliador</p:outputLabel>
+                    <p:selectOneMenu value="#" id="cbxAfiliador" style="width:75%">
+                        <f:selectItems value="#" var="ciudad" itemValue="" itemLabel="" />
+                    </p:selectOneMenu> 
                     <br></br>
                 </h:panelGrid>
             </p:panel>
