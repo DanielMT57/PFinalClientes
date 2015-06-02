@@ -30,9 +30,13 @@ import javax.persistence.TemporalType;
 @PrimaryKeyJoinColumn(name = "cedula", referencedColumnName = "cedula")
 public class Afiliados extends Personas  {
     public final static String BUSCAR_CIUDADES="Afiliado.buscarCiudades";
-    @OneToOne
+    
+    @ManyToOne
     @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
     private Afiliados afiliadosCollection;
+    
+    @OneToMany(mappedBy = "afiliadosCollection")
+    private List<Afiliados> afiliadosp;
     
     @ManyToOne
     @JoinColumn(name = "niveles_id", referencedColumnName = "id")
@@ -65,8 +69,7 @@ public class Afiliados extends Personas  {
         this.fechaafiliacion = fechaafiliacion;
         this.sincronizado = sincronizado;
         this.pedidosCollection = pedidosCollection;
-        this.afiliadosCollection = afiliadosCollection;
-        
+        this.afiliadosCollection = afiliados;
     }
     
     
@@ -110,4 +113,13 @@ public class Afiliados extends Personas  {
         this.afiliadosCollection = afiliadosCollection;
     }
 
+    public List<Afiliados> getAfiliadosp() {
+        return afiliadosp;
+    }
+
+    public void setAfiliadosp(List<Afiliados> afiliadosp) {
+        this.afiliadosp = afiliadosp;
+    }
+
+    
 }

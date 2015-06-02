@@ -171,9 +171,10 @@ public class PersonaBean implements Serializable {
         pe.setCiudadesId(ciudad);
         
 //        personasEJB.crear(pe);
-
+        Afiliados a= afiliadosEJB.buscar(personaId);
+        System.out.println(a.getNombre());
         //pe=personasEJB.buscar(pe.getCedula());
-        Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, afiliadosEJB.buscar(personaId));
+        Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, a);
     
 
 //        af.setCedula(pe.getCedula());
@@ -197,11 +198,12 @@ public class PersonaBean implements Serializable {
             email = p.getEmail();
             nombre = p.getNombre();
             apellido = p.getApellidos();
-
            ciudad=p.getCiudadesId();
             idNiveles = af.getNivel().getId();
             fechaAfiliacion = af.getFechaafiliacion();
-          personaId=af.getAfiliadosCollection().getCedula();
+            if(af.getAfiliadosCollection()!=null){
+                personaId=af.getAfiliadosCollection().getCedula();
+            }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha encontrado correctamente "));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informacion", "No se encontro nada "));
