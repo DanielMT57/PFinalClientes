@@ -172,7 +172,6 @@ public class PersonaBean implements Serializable {
         
 //        personasEJB.crear(pe);
         Afiliados a= afiliadosEJB.buscar(personaId);
-        System.out.println(a.getNombre());
         //pe=personasEJB.buscar(pe.getCedula());
         Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, a);
     
