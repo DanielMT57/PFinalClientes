@@ -33,6 +33,18 @@ and open the template in the editor.
                     <p:inputText id="tfPrecioT"  value="" />
                     <p:outputLabel>Saldo</p:outputLabel>
                     <p:inputText id="tfSaldo"  value="" />
+                </p:panelGrid></p:panel>
+                <p:panel header="DETALLE DE LAS VENTAS">                
+                <p:panelGrid columns="2">
+                    <p:outputLabel>Id del Producto</p:outputLabel>
+                    <p:selectOneMenu value="" id="cbxIdProducto" style="width:75%">
+                        <f:selectItems value="" var="niveles" itemValue="" itemLabel="" />
+                    </p:selectOneMenu>  
+                    <p:outputLabel>Cantidad</p:outputLabel>
+                    <p:inputText id="tfCantidad" required="true" value="" />
+
+                    <p:outputLabel>Precio Unitario</p:outputLabel>
+                    <p:inputText id="tfPrecioUnitario" required="true" value="" />
                 </p:panelGrid>
             </p:panel>  
             <p:row>

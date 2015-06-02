@@ -13,41 +13,41 @@
         <h:form>
             <p:commandButton value="Volver" action="Principal" immediate="true"/> 
             <p:panel header="Listado de Productos"> 
-                <p:dataTable  var="ListaPro" value="#{catalogoBean.catalogos}">
+                <p:dataTable  var="pro" value="#{ProductoBean.productos}">
                     <p:column headerText="Codigo">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.id}">
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Color">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.color}">
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Categoria">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.categoria}">
                         </h:outputText>  
                     </p:column>
                     <p:column headerText="Marcas">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.marca}">
                         </h:outputText>   
                     </p:column>
                     <p:column headerText="Cantidad">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.cantidad}">
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Peso">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.peso}">
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Precio Compra">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.precioCompra}">
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Precio Venta">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.precioVenta}">
                         </h:outputText>  
                     </p:column>
                     <p:column headerText="Descripcion">
-                        <h:outputText value="">
+                        <h:outputText value="#{pro.descripcion}">
                         </h:outputText>   
                     </p:column>
                 </p:dataTable>
