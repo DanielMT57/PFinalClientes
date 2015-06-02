@@ -30,7 +30,7 @@ public class Pedidos implements Serializable {
     @Id
     @Column(name = "Id")
     private int id;
-    @JoinColumn(name = "Afiliados_cedula", referencedColumnName = "cedula")
+    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")
     @ManyToOne
     private Afiliados afiliadosCedula;
     @Column(name = "Estado_id")
