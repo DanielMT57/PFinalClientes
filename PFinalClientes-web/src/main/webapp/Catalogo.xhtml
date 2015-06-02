@@ -9,16 +9,16 @@
         <title>Catalogo</title>
     </h:head>
     <h:body>
-        <br/> 
-        <h:link outcome="Principal" value="Volver al menu principal"/>          
-        <h:form>           
+        <br/>         
+        <h:form> 
+            <p:commandButton value="Volver" action="Principal" immediate="true"/> 
             <p:panel header="Listado del Catalogo">              
                 <h:panelGrid columns="4" cellpadding="3">
-                    
+
                 </h:panelGrid>
             </p:panel>  
             <p:row>
-            
+
             </p:row>
             <p:dataTable  var="ca" value="#{catalogoMBean.catalogos}">
                 <p:column headerText="id">

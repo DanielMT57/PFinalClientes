@@ -9,9 +9,9 @@
         <title>Agenda</title>
     </h:head>   
     <h:body>
-        <br/> 
-        <h:link outcome="Principal" value="Volver al menu principal"/>          
+        <br/>        
         <h:form> 
+            <p:commandButton value="Volver" action="Principal" immediate="true"/> 
             <p:panel header="Agenda">
                 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <h:panelGrid columns="4" cellpadding="3" >               

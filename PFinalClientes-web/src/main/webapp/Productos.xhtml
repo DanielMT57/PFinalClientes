@@ -10,8 +10,8 @@
     </h:head>
     <h:body>
         <br/> 
-        <h:link outcome="Principal" value="Volver al menu principal"/>
         <h:form>
+            <p:commandButton value="Volver" action="Principal" immediate="true"/> 
             <p:panel header="Listado de Productos"> 
                 <p:dataTable  var="ListaPro" value="#{catalogoBean.catalogos}">
                     <p:column headerText="Codigo">
