@@ -39,7 +39,7 @@ public class Catalogo implements Serializable {
     private BigInteger cantidadpaginas;
     @Column(name = "cantidadproductos")
     private BigInteger cantidadproductos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catalogo_Id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "catalogoId")
     private Collection<Paginas> paginasCollection;
     @Column(name = "sincronizado")
     private int sincronizado;

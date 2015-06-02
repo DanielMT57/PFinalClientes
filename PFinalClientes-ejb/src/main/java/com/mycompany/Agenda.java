@@ -27,7 +27,7 @@ public class Agenda implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @ManyToOne
-    @JoinColumn(name = "persona_cedula", referencedColumnName = "cedula")
+    @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
     private Personas persona;
     
 

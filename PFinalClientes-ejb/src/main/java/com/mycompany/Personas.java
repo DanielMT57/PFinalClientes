@@ -15,6 +15,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.ClassExtractor;
 
 /**
  *
@@ -23,6 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PERSONAS")
 @Inheritance(strategy = InheritanceType.JOINED)
+@ClassExtractor(PersonasExtractor.class)
 public class Personas implements Serializable {
 
     @Id
@@ -40,10 +42,10 @@ public class Personas implements Serializable {
     private String direccion;
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "Personas_cedula")
+    @OneToMany(mappedBy = "persona")
     private List<Agenda> agendas;
-    @OneToOne(mappedBy = "cedula")
-    private Afiliados afiliados;
+//    @OneToOne(mappedBy = "cedula")
+//    private Afiliados afiliados;
     @OneToMany(mappedBy = "personaCliente")
     private List<VentasClientes> ventaClientes;
     
@@ -52,7 +54,7 @@ public class Personas implements Serializable {
     public Personas() {
     }
 
-    public Personas(int cedula, String ciudadesId, Long telefono, String nombre, String apellidos, String direccion, String email, List<Agenda> agendas, Afiliados afiliados, List<VentasClientes> ventaClientes) {
+    public Personas(int cedula, String ciudadesId, Long telefono, String nombre, String apellidos, String direccion, String email, List<Agenda> agendas, List<VentasClientes> ventaClientes) {
         this.cedula = cedula;
         this.ciudadesId = ciudadesId;
         this.telefono = telefono;
@@ -61,7 +63,6 @@ public class Personas implements Serializable {
         this.direccion = direccion;
         this.email = email;
         this.agendas = agendas;
-        this.afiliados = afiliados;
         this.ventaClientes = ventaClientes;
     }
 
@@ -127,14 +128,6 @@ public class Personas implements Serializable {
 
     public void setAgendas(List<Agenda> agendas) {
         this.agendas = agendas;
-    }
-
-    public Afiliados getAfiliados() {
-        return afiliados;
-    }
-
-    public void setAfiliados(Afiliados afiliados) {
-        this.afiliados = afiliados;
     }
 
     public List<VentasClientes> getVentaClientes() {

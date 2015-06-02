@@ -44,12 +44,12 @@ public class Afiliados extends Personas  {
     @Column(name = "SINCRONIZADO")
     private Character sincronizado;
     
-    @OneToMany(mappedBy = "afiliados_Cedula")
+    @OneToMany(mappedBy = "afiliadosCedula")
     private List<Pedidos> pedidosCollection;
 
-    @OneToOne
-    @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
-    private Personas personas;
+//    @OneToOne
+//    @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
+//    private Personas personas;
 
     //    @OneToOne
 //    @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
@@ -57,13 +57,12 @@ public class Afiliados extends Personas  {
     public Afiliados() {
     }
 
-    public Afiliados(Niveles nivel, Date fechaafiliacion, Character sincronizado, List<Pedidos> pedidosCollection, Personas personas, Afiliados afiliadosCollection, int cedula, Long telefono, String nombre, String apellidos, String direccion, String email, String ciudadesId, Afiliados afiliados) {
+    public Afiliados(Niveles nivel, Date fechaafiliacion, Character sincronizado, List<Pedidos> pedidosCollection, Afiliados afiliadosCollection, int cedula, Long telefono, String nombre, String apellidos, String direccion, String email, String ciudadesId, Afiliados afiliados) {
         super();
         this.nivel = nivel;
         this.fechaafiliacion = fechaafiliacion;
         this.sincronizado = sincronizado;
         this.pedidosCollection = pedidosCollection;
-        this.personas = personas;
         this.afiliadosCollection = afiliadosCollection;
     }
     
@@ -100,15 +99,6 @@ public class Afiliados extends Personas  {
     public void setPedidosCollection(List<Pedidos> pedidosCollection) {
         this.pedidosCollection = pedidosCollection;
     }
-
-    public Personas getPersonas() {
-        return personas;
-    }
-
-    public void setPersonas(Personas personas) {
-        this.personas = personas;
-    }
-
     public Afiliados getAfiliadosCollection() {
         return afiliadosCollection;
     }
