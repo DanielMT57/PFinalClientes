@@ -1,23 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Principal</title>
-    </h:head>
-    <h:body>
-        <center>
-            <h2 style="margin-top:2">Bienvenidos a nuestra aplicacion para los Clientes</h2>                 
-            <h:form>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <center>
+    <h1>Bienvenido a nuestra aplicacion para los Clientes</h1>
+    	<p>Este aplicacion es el proyecto final correscpondie a las asignaturas
+            programacion avanzada 2 y administracion de Bases de Datos</p>
+    
+        <h:form>
             <p:panelGrid columns="1">
                 <p:commandButton value="CLick AQui" action="Principal?faces-redirect=true" ajax="false" /> 
             </p:panelGrid>
-            </h:form> 
-            <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        </center>
-    </h:body>
-</html>
-
+        </h:form> 
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </center>
+</ui:composition>
