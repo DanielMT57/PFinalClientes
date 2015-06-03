@@ -20,4 +20,5 @@ public class AreasEJB extends EJBGenericoCliente<Areaspagina>{
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    //ejb de las areas pagina
 }
