@@ -16,6 +16,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,8 +30,10 @@ import org.eclipse.persistence.annotations.ClassExtractor;
 @Entity
 @Table(name = "Pedidos")
 //@Inheritance(strategy = InheritanceType.JOINED)
-public class Pedidos implements Serializable {
 
+@NamedQuery(name = Pedidos.CONSULTA_LISTARTODOS, query = "SELECT  p From Pedidos p where p.estadoId=:estado"    )
+public class Pedidos implements Serializable {
+  public static final String CONSULTA_LISTARTODOS = "Pedidos.listartodos";
     @Id
     @Column(name = "Id")
     private int id;

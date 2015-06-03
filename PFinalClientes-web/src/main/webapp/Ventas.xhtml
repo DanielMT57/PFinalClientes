@@ -20,30 +20,32 @@ and open the template in the editor.
             <p:panel header="VENTAS DE LOS CLIENTES">
                 <p:panelGrid columns="2">
                     <p:outputLabel>Id </p:outputLabel>
-                    <p:inputText id="tfIdPedido"  value="" />
+                    <p:inputText id="tfIdPedido"  value="#{ventaManagedBean.id}" />
                     <p:outputLabel>Cedula del Afiliado</p:outputLabel>
-                    <p:selectOneMenu value="" id="cbxCedulaAfiliado" style="width:75%">
-                        <f:selectItems value="" var="cedAfiliado" itemValue="" itemLabel="" />
+                    <p:selectOneMenu value="#{ventaManagedBean.afiliadoCedula}" id="cbxCedulaAfiliado" style="width:75%">
+                        <f:selectItems value="#{ventaManagedBean.afiliados}" var="af" itemValue="${af.cedula}" itemLabel="${af.nombre}" />
                     </p:selectOneMenu> 
                     <p:outputLabel>Cuota</p:outputLabel>
-                    <p:inputText id="tfCuota" value="" />                   
-                    <p:outputLabel>Fecha</p:outputLabel>
-                    <p:inputText id="tfFecha" value="" />
+                    <p:inputText id="tfCuota" value="#{ventaManagedBean.cuota}" />  
+                    
+                             <p:outputLabel for="mask2" value="Fecha :" />
+                             <p:calendar id="mask2" value="#{ventaManagedBean.fecha}" pattern="dd-MM-yyyy"  />
+              
                     <p:outputLabel>Precio Total</p:outputLabel>
-                    <p:inputText id="tfPrecioT"  value="" />
+                    <p:inputText id="tfPrecioT"  value="#{ventaManagedBean.preciototal}" />
                     <p:outputLabel>Saldo</p:outputLabel>
-                    <p:inputText id="tfSaldo"  value="" />
+                    <p:inputText id="tfSaldo"  value="#{ventaManagedBean.saldo}" />
                 </p:panelGrid></p:panel>
             <p:panel header="DETALLE DE LAS VENTAS">                
                 <p:panelGrid columns="4">
                     <p:outputLabel>Id del Producto</p:outputLabel>
-                    <p:selectOneMenu value="" id="cbxIdProducto" style="width:75%">
-                        <f:selectItems value="" var="niveles" itemValue="" itemLabel="" />
+                    <p:selectOneMenu value="#{ventaManagedBean.productoId}" id="cbxIdProducto" style="width:75%">
+                        <f:selectItems value="#{ventaManagedBean.productos}" var="pro" itemValue="${pro.id}" itemLabel="${pro.descripcion}" />
                     </p:selectOneMenu>  
                     <p:outputLabel>Cantidad</p:outputLabel>
-                    <p:inputText id="tfCantidad"  value="" />
+                    <p:inputText id="tfcantidad"  value="#{ventaManagedBean.cantidad}" />
                     <p:outputLabel>Precio Unitario</p:outputLabel>
-                    <p:inputText id="tfPrecioUnitario" value="" />
+                    <p:inputText id="tfPrecioUnitario" value="#{ventaManagedBean.preciototal}" />
                 </p:panelGrid>
             </p:panel>  
             <p:row>
