@@ -31,7 +31,8 @@ public class VentasClientes implements Serializable {
     @Column(name = "Id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "cliente", referencedColumnName = "cedula")   
+    @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")   
+   // private Afiliados afiliado;
     private Personas personaCliente;
     @Column(name = "cuotas")
     private int cuotas;

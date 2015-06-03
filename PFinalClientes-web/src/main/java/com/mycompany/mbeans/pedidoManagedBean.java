@@ -201,14 +201,6 @@ public class pedidoManagedBean implements Serializable {
         pedidoEJB.crear(pe);
         pedidos = pedidoEJB.listarPedidos();
 
-//        Detallepedido de = new Detallepedido();
-//        // de.setDetallepedidoPK(idPedido, idProducto);
-//        de.setPedidos(pedidoEJB.buscar(idPedido));
-//        de.setProductos(productoEJB.buscar(idProducto));
-//        de.setCantidad(cantidad);
-//        de.setPreciounitario(precioUnitario);
-//        de.setSincronizado('0');
-//        detallepedidoEJB.crear(de);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente  "));
         System.out.println("ha insertado correctamente");
         limpiar();
@@ -216,14 +208,24 @@ public class pedidoManagedBean implements Serializable {
     }
 
     public void crearDetallePedido() {
-        Detallepedido de = new Detallepedido();
-        // de.setDetallepedidoPK(idPedido, idProducto);
-        de.setPedidos(pedidoEJB.buscar(idPedidoList));
-        de.setProductos(productoEJB.buscar(idProducto));
-        de.setCantidad(cantidad);
-        de.setPreciounitario(precioUnitario);
-        de.setSincronizado('0');
-        detallepedidoEJB.crear(de);
+
+        try {
+            Detallepedido de = new Detallepedido();
+            // de.setDetallepedidoPK(idPedido, idProducto);
+            de.setPedidos(pedidoEJB.buscar(idPedidoList));
+            de.setProductos(productoEJB.buscar(idProducto));
+            de.setCantidad(cantidad);
+            de.setPreciounitario(precioUnitario);
+            de.setSincronizado('0');
+            detallepedidoEJB.crear(de);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente  "));
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No inserto, este producto ya fue vendido  "));
+
+            e.getMessage();
+        }
+
     }
 
     public void buscarPedido() {

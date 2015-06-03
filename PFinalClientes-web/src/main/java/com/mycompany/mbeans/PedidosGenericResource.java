@@ -24,7 +24,7 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author german
  */
-@Path("pedidosGeneric")
+@Path("servicio")
 @RequestScoped
 public class PedidosGenericResource {
     

@@ -35,9 +35,22 @@ and open the template in the editor.
                     <p:inputText id="tfPrecioT"  value="#{ventaManagedBean.preciototal}" />
                     <p:outputLabel>Saldo</p:outputLabel>
                     <p:inputText id="tfSaldo"  value="#{ventaManagedBean.saldo}" />
-                </p:panelGrid></p:panel>
+                </p:panelGrid>
+                 <p:row>
+                  
+                </p:row>
+            </p:panel>
+            
+            <p:commandButton value="Insertar venta" actionListener="#{ventaManagedBean.crearVenta()}" ajax="false"/>
+                    <p:commandButton value="Buscar Venta" actionListener="#" ajax="false" />
+                    <p:commandButton value="Actualizar Venta" actionListener="#" ajax="false" />
             <p:panel header="DETALLE DE LAS VENTAS">                
                 <p:panelGrid columns="4">
+                    
+                       <p:outputLabel>Venta</p:outputLabel>
+                       <p:selectOneMenu value="#{ventaManagedBean.idventaList}" id="cbxIdPedido" style="width:75%" >
+                           <f:selectItems value="#{ventaManagedBean.ventas}" var="ven" itemValue="${ven.id}" itemLabel="${ven.id}" />
+                    </p:selectOneMenu> 
                     <p:outputLabel>Id del Producto</p:outputLabel>
                     <p:selectOneMenu value="#{ventaManagedBean.productoId}" id="cbxIdProducto" style="width:75%">
                         <f:selectItems value="#{ventaManagedBean.productos}" var="pro" itemValue="${pro.id}" itemLabel="${pro.descripcion}" />
@@ -49,11 +62,50 @@ and open the template in the editor.
                 </p:panelGrid>
             </p:panel>  
             <p:row>
-                <p:commandButton value="Insertar" actionListener="#" ajax="false"/>
-                <p:commandButton value="Buscar" actionListener="#" ajax="false" />
-                <p:commandButton value="Actualizar" actionListener="#" ajax="false" /> 
-                <p:commandButton value="Ver Abonos" action="Abonos" immediate="true"/>   
+                <p:commandButton value="Insertar" actionListener="#{ventaManagedBean.crearDetalle()}" ajax="false"/>
+            
+                <p:commandButton value="Ver Abonos" action="DetalleVenta" immediate="true"/>   
             </p:row>             
-        </h:form>        
+        </h:form>  
+        
+        
+        
+         <h:form>
+             <p:dataTable  var="ve" value="#{ventaManagedBean.ventas}">
+                <p:column headerText="id">
+                    <h:outputText value="#{ve.id}" />
+                </p:column>
+
+                <p:column headerText="Afiliado">
+                    <h:outputText value="#{ve.personaCliente.nombre}" />      
+                </p:column>
+
+
+                <p:column headerText="Cuota">
+                    <h:outputText value="#{ve.cuotas}" />    
+
+                </p:column>
+
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{ve.fecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>   
+                </p:column>
+
+                <p:column headerText="Precio total">
+                    <h:outputText value="#{ve.precioTotal}" />    
+
+                </p:column>
+                 
+                 
+                <p:column headerText="Saldo">
+                    <h:outputText value="#{ve.saldo}" />    
+
+                </p:column>
+
+
+            </p:dataTable> 
+
+        </h:form>
     </h:body>
 </html>
