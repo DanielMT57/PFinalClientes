@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Detalles</title>
+    </h:head>
+    <h:body>
+        <br/> 
+        <h:link outcome="Principal" value="HOME"/>          
+        <h:form>           
+            <p:panel header="Deatalles del pedido">              
+                <h:panelGrid columns="4" cellpadding="3">
+               
+                </h:panelGrid>
+            </p:panel> 
+            <p:row>
+            
+            </p:row>
+                 <p:commandButton value="ATRAS" action="Pedidos?faces-redirect=true" />
+
+            <p:dataTable  var="de" value="#{pedidoManagedBean.detalles}">
+                <p:column headerText="Pedido_id">
+                    <h:outputText value="#{de.detallepedidoPK.pedidosId}" />
+                </p:column>
+
+                <p:column headerText="Productos">
+                    <h:outputText value="#{de.productos.descripcion}" />      
+                </p:column>
+
+
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{de.cantidad}" />    
+
+                </p:column>
+
+
+                <p:column headerText="Precio Unitario">
+                    <h:outputText value="#{de.preciounitario}" />    
+
+                </p:column>
+
+            </p:dataTable> 
+        </h:form>
+    </h:body>
+</html>
