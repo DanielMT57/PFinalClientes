@@ -37,6 +37,7 @@ import javax.inject.Named;
 @Named(value = "AgendaBean")
 @ViewScoped
 public class AgendaBean implements Serializable {
+//Managed bean de la agenda instancio los ejbs necesarios para el funcionamiento de la pagina
 
     @EJB
     ProductoClientesEJB productosEJB;
@@ -55,7 +56,7 @@ public class AgendaBean implements Serializable {
     private List<Afiliados> afiliados;
 
     private List<Agenda> agendas;
-
+//atributos que haran referencia la vista 
     private int id;
     private Date fecha;
     private Date hora;
@@ -69,6 +70,7 @@ public class AgendaBean implements Serializable {
     public void setAfiliados(List<Afiliados> afiliados) {
         this.afiliados = afiliados;
     }
+//Getters y setters de estos atributos
 
     public int getId() {
         return id;
@@ -110,6 +112,9 @@ public class AgendaBean implements Serializable {
         this.descripcion = descripcion;
     }
 
+    /**
+     * POSt construct que va a cargar la lista de afiliados
+     */
     @PostConstruct
     public void postConstruct() {
         afiliados = afiliadoEJB.listarTodos();
@@ -121,6 +126,9 @@ public class AgendaBean implements Serializable {
         return agendas;
     }
 
+    /**
+     * Metodo que crea la agenda
+     */
     public void crearAgenda() {
         try {
             Agenda a = new Agenda();
@@ -129,19 +137,22 @@ public class AgendaBean implements Serializable {
             a.setHora(hora);
             a.setDescripcion(descripcion);
             a.setPersona(afiliadoEJB.buscar(personaId));
-
+// seteo los nuevos valores y creo la entidad
             agendaEJB.crear(a);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
             System.out.println("ha insertado correctamente");
             limpiar();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No se ha podido insertar "));
-
+//en caso de no persisitir enviar mensaje de alerta
             e.getMessage();
         }
 
     }
 
+    /**
+     * Metodo que limpia los campos luego de realizar una transaccion
+     */
     private void limpiar() {
         setDescripcion(null);
         setFecha(null);
@@ -150,9 +161,12 @@ public class AgendaBean implements Serializable {
 
     }
 
+    /**
+     * Metodo que busca una agenda
+     */
     public void buscarAgenda() {
         Agenda a = agendaEJB.buscar(id);
-
+// si no es nullo el resultado, carga los valores
         if (a != null) {
 
             fecha = a.getFecha();
@@ -168,6 +182,9 @@ public class AgendaBean implements Serializable {
         System.out.println("ha encontrado  correctamente");
     }
 
+    /**
+     * Metodo que edita la agenda
+     */
     public void editarAgenda() {
         try {
             Agenda a = new Agenda();
@@ -189,6 +206,9 @@ public class AgendaBean implements Serializable {
 
     }
 
+    /**
+     * Metodo que elimina la agenda
+     */
     public void eliminarAgenda() {
         try {
             Agenda a = agendaEJB.buscar(id);
@@ -198,7 +218,7 @@ public class AgendaBean implements Serializable {
             System.out.println("ha eliminado  correctamente");
             limpiar();
         } catch (Exception e) {
-            e.getMessage();
+            e.getMessage(); // en caso de no eliminarla enviar mensaje que no se puede eliminar
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "no se ha podido eliminar  "));
 
         }

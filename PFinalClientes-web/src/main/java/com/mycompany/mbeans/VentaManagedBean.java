@@ -35,6 +35,7 @@ import javax.inject.Named;
 @Named(value = "ventaManagedBean")
 @ViewScoped
 public class VentaManagedBean implements Serializable {
+// Instancio los ejbs necesarios 
 
     @EJB
     private VentasClientesEJB ventasEJB;
@@ -44,7 +45,7 @@ public class VentaManagedBean implements Serializable {
     private ProductoClientesEJB productoEJB;
     @EJB
     private AfiliadosEJB afiliadosEJB;
-
+// atributos para la pagina venta
     private int id;
     private int afiliadoCedula;
     private int cuota;
@@ -56,11 +57,11 @@ public class VentaManagedBean implements Serializable {
     private int cantidad;
     private double preciounitario;
     private int idventaList;
-
+//listas de productos afiliados ventas y detalles 
     private List<Productos> productos;
     private List<Afiliados> afiliados;
     private List<VentasClientes> ventas;
-     private List<DetalleVenta> detalles;
+    private List<DetalleVenta> detalles;
 
     public AfiliadosEJB getAfiliadosEJB() {
         return afiliadosEJB;
@@ -174,7 +175,9 @@ public class VentaManagedBean implements Serializable {
     public void setIdventaList(int idventaList) {
         this.idventaList = idventaList;
     }
-
+/**
+ * Metodo qeu se encarga de crear una venta
+ */
     public void crearVenta() {
         VentasClientes v = new VentasClientes();
         v.setId(id);
@@ -191,7 +194,9 @@ public class VentaManagedBean implements Serializable {
         limpiar();
 
     }
-
+/**
+ * Metodo que se encarga de buscar una venta
+ */
     public void buscarVenta() {
         VentasClientes pe = ventasEJB.buscar(id);
         if (pe != null) {
@@ -256,7 +261,7 @@ public class VentaManagedBean implements Serializable {
     }
 
     public List<DetalleVenta> getDetalles() {
-        detalles=detalleEJB.listarTodos();
+        detalles = detalleEJB.listarTodos();
         return detalles;
     }
 

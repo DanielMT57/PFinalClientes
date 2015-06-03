@@ -24,18 +24,18 @@ import javax.faces.view.ViewScoped;
 @Named(value = "catalogoMBean")
 @ViewScoped
 public class CatalogoMBean implements Serializable {
+//atributos que haran referencia la pagina de catalogos
 
     private int id;
     private Date fechaInicio;
     private Date fechaFin;
     private int cantidadPaginas;
     private int cantidadProductos;
-    
-    
+
+    //instancio un objeto tipo catalogo ejb
     @EJB
     private CatalogoClienteEJB catalogClienteEJB;
- 
-    
+
     public int getId() {
         return id;
     }
@@ -86,12 +86,15 @@ public class CatalogoMBean implements Serializable {
 
     private List<Catalogo> catalogos;
 
-  
+    /**
+     * Metodo que carga la lista de catalogos
+     *
+     * @return lista de catalogos persistidos
+     */
     public List<Catalogo> getCatalogos() {
-        catalogos=catalogClienteEJB.listarTodos();
+        catalogos = catalogClienteEJB.listarTodos();
         return catalogos;
     }
-
 
     private void limpiar() {
         setId(0);

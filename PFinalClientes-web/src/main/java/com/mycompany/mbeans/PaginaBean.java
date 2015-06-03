@@ -26,18 +26,18 @@ import javax.ejb.EJB;
 @ViewScoped
 public class PaginaBean implements Serializable{
 
-    
+    //atributos necesarios para la construccion de la pagina
        private int idpagina;
     private int categoriaID;
     private int catalogoID;
     private BigInteger numero;
    
-    
+    //instancio los ejbs 
     @EJB
     private PaginaEJB paginaEJB;
     
     private List<Paginas> paginas;
-
+//cargo la lista de paginas persistidas
     public List<Paginas> getPaginas() {
         paginas=paginaEJB.listarTodos();
         return paginas;

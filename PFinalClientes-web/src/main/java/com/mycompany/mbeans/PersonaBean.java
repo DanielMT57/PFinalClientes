@@ -5,16 +5,13 @@
  */
 package com.mycompany.mbeans;
 
-
 import com.mycompany.Niveles;
 import com.mycompany.Personas;
 import com.mycompany.Afiliados;
 
-
 import com.mycompany.sessionbeans.PersonaEJB;
 import com.mycompany.sessionbeans.NivelesEJB;
 import com.mycompany.sessionbeans.AfiliadosEJB;
-
 
 import java.io.Serializable;
 import java.util.Date;
@@ -36,6 +33,7 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 
 public class PersonaBean implements Serializable {
+//atributos para la pagina personas
 
     private int cedula;
     private int idCiudades;
@@ -52,32 +50,28 @@ public class PersonaBean implements Serializable {
     public List<Niveles> getNiveles() {
         return niveles;
     }
-    
-
+// Instancio los ejbs necesarios
     @EJB
     private PersonaEJB personasEJB;
- 
 
     @EJB
     private NivelesEJB nivelesEJB;
 
     @EJB
     private AfiliadosEJB afiliadosEJB;
-    
-
 
     private Date fechaAfiliacion;
 
     private int idNiveles;
 
     /**
-     * Creates a new instance of PersonaManagedBean
+     * Post construct que carga la lista de personas niveles y ciudades
      */
     @PostConstruct
     public void postConstruct() {
-        personas=personasEJB.listarTodos();     
-        niveles=nivelesEJB.listarTodos();
-        ciudades=afiliadosEJB.getCiudades();
+        personas = personasEJB.listarTodos();
+        niveles = nivelesEJB.listarTodos();
+        ciudades = afiliadosEJB.getCiudades();
 
     }
 
@@ -133,16 +127,6 @@ public class PersonaBean implements Serializable {
         this.email = email;
     }
 
-  
-
-
-
-  
-  
-
-
- 
-
     public Date getFechaAfiliacion() {
         return fechaAfiliacion;
     }
@@ -159,6 +143,9 @@ public class PersonaBean implements Serializable {
         this.idNiveles = idNiveles;
     }
 
+    /**
+     * Metodo que crea personas
+     */
     public void crearPersonas() {
 
         Personas pe = new Personas();
@@ -169,16 +156,15 @@ public class PersonaBean implements Serializable {
         pe.setDireccion(direccion);
         pe.setEmail(email);
         pe.setCiudadesId(ciudad);
-        
-//        personasEJB.crear(pe);
-        Afiliados a= afiliadosEJB.buscar(personaId);
+
+// busca un afiliado por su cedula
+        Afiliados a = afiliadosEJB.buscar(personaId);
         //pe=personasEJB.buscar(pe.getCedula());
         Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, a);
-    
 
 //        af.setCedula(pe.getCedula());
 //        af.setNivel();
-
+        // crea el afiliado y la persona
         afiliadosEJB.crear(af);
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
@@ -187,24 +173,28 @@ public class PersonaBean implements Serializable {
 
     }
 
+    /**
+     * Metodo que busca una persona
+     */
     public void buscarPersona() {
         Personas p = personasEJB.buscar(cedula);
         Afiliados af = afiliadosEJB.buscar(cedula);
         if (p != null) {
-
+// en caso de que el resultado no sea null, obtengo los valores 
             telefono = p.getTelefono();
             direccion = p.getDireccion();
             email = p.getEmail();
             nombre = p.getNombre();
             apellido = p.getApellidos();
-           ciudad=p.getCiudadesId();
+            ciudad = p.getCiudadesId();
             idNiveles = af.getNivel().getId();
             fechaAfiliacion = af.getFechaafiliacion();
-            if(af.getAfiliadosCollection()!=null){
-                personaId=af.getAfiliadosCollection().getCedula();
+            if (af.getAfiliadosCollection() != null) {
+                personaId = af.getAfiliadosCollection().getCedula();
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha encontrado correctamente "));
         } else {
+            // Si no encuentra nada, envio mensaje
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informacion", "No se encontro nada "));
         }
 
@@ -212,22 +202,27 @@ public class PersonaBean implements Serializable {
         //   limpiar ();
 
     }
-     private List<Personas> personas;
-          private List<String> ciudades;
+    private List<Personas> personas; //listado de personas
+    private List<String> ciudades;// listado de ciudades
 
     public List<String> getCiudades() {
         return ciudades;
     }
-          
-          
 
+    /**
+     * getter de Listado de personas
+     *
+     * @return listado de personas
+     */
     public List<Personas> getPersonas() {
-       personas= personasEJB.listarTodos();
+        personas = personasEJB.listarTodos();
         return personas;
     }
 //     
 //     
 //
+// Metodo que setea los valores y limpia la pagina
+
     private void limpiar() {
 
         this.setCedula(0);
@@ -265,14 +260,16 @@ public class PersonaBean implements Serializable {
     }
 
     public List<Afiliados> getAfiliados() {
-        afiliados=afiliadosEJB.listarTodos();
+        afiliados = afiliadosEJB.listarTodos();
         return afiliados;
     }
-    
-    
-        public void editarPersonas() {
-            
-        Afiliados a= afiliadosEJB.buscar(cedula);
+
+    /**
+     * Metodo que edita las personas y los afiliados a su vez
+     */
+    public void editarPersonas() {
+
+        Afiliados a = afiliadosEJB.buscar(cedula);
         a.setCedula(cedula);
         a.setCiudadesId(ciudad);
         a.setNombre(nombre);
@@ -290,7 +287,5 @@ public class PersonaBean implements Serializable {
         System.out.println("ha insertado correctamente");
         limpiar();
     }
-    
-    
 
 }

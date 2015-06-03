@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.mbeans;
 
 import java.io.Serializable;
@@ -24,19 +23,17 @@ import javax.ejb.EJB;
 @Named(value = "areasBean")
 @ViewScoped
 
-public class AreasBean implements Serializable{
+public class AreasBean implements Serializable {
+//controlador de la pagina Areas
 
-@EJB
-private AreasEJB areasEJB;
-
-private List<Areaspagina> areas;
+    @EJB
+    private AreasEJB areasEJB;
+//instancio un objeto del ejb de areas  y cargo una lista de paginas
+    private List<Areaspagina> areas;
 
     public List<Areaspagina> getAreas() {
-        areas= areasEJB.listarTodos();
+        areas = areasEJB.listarTodos();
         return areas;
     }
 
-
-
-   
 }

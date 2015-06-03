@@ -12,8 +12,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import com.mycompany.sessionbeans.ProductoClientesEJB;
 import com.mycompany.sessionbeans.PromocionesEJB;
-        
-        
 
 import com.mycompany.Productos;
 import com.mycompany.Promociones;
@@ -30,10 +28,10 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @Named(value = "promocionesManagedBean")
 @ViewScoped
-public class PromocionesManagedBean implements Serializable{
+public class PromocionesManagedBean implements Serializable {
 
     /**
-     * Creates a new instance of PromocionesManagedBean
+     * atributos de la pagina promociones
      */
     private int id;
 
@@ -45,10 +43,11 @@ public class PromocionesManagedBean implements Serializable{
     private int cantidad;
 
     @EJB
-    private ProductoClientesEJB productosEJB;
+    private ProductoClientesEJB productosEJB;  //Instancio los ejbs necesarios 
 
     @EJB
     private PromocionesEJB promocionesEJB;
+///Getters y setters de los atributos
 
     public int getId() {
         return id;
@@ -56,7 +55,7 @@ public class PromocionesManagedBean implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    } 
+    }
 
     public int getProductosId() {
         return productosId;
@@ -90,19 +89,13 @@ public class PromocionesManagedBean implements Serializable{
         this.descuento = descuento;
     }
 
-   
+// listado de promociones
+    private List<Promociones> promociones;
 
-
-  
-
-     private List<Promociones> promociones;
-
-    public List<Promociones> getPromociones() {
-         promociones = promocionesEJB.listarTodos();
+    public List<Promociones> getPromociones() { //Metodo get de las promociones y las carga en la pagina
+        promociones = promocionesEJB.listarTodos();
         return promociones;
     }
-
- 
 
     public double getPreciofinal() {
         return preciofinal;
@@ -125,82 +118,91 @@ public class PromocionesManagedBean implements Serializable{
     public void setProductos(List<Productos> productos) {
         this.productos = productos;
     }
-    
-     public void actualizar() {
+
+    /**
+     * Metodo que me calcula el precio de venta de los productos en promocion
+     */
+    public void actualizar() {
         Productos p = productosEJB.buscar(productosId);
         preciofinal = p.getPrecioVenta();
     }
-     
 
-     
-     public void crearPromociones(){
-     Promociones pe = new Promociones();
-     pe.setId(id);
-     pe.setDescripcion(descripcion);
-     pe.setFechafin(fechafin);
-     pe.setCantidad(cantidad);
-     int precioTotal= (int) (preciofinal*cantidad);
-     precioTotal= precioTotal - (precioTotal*descuento/100);
-         System.out.println(descuento);
-         System.out.println(precioTotal);
-     pe.setPreciofinal(precioTotal);
-     pe.setProductosId(productosEJB.buscar(productosId));
-     pe.setDescuento(descuento);
-     promocionesEJB.crear(pe);
-     
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente  "));
-        System.out.println("ha insertado correctamente");
-        limpiar();
-     
-     
-     
-     }
+    /**
+     * Metodo que crea las promociones
+     */
+    public void crearPromociones() {
+        try {
 
-     public void eliminarPromo(){
-      try {
-      Promociones p = promocionesEJB.buscar(id);
+            Promociones pe = new Promociones();
+            pe.setId(id);
+            pe.setDescripcion(descripcion);
+            pe.setFechafin(fechafin);
+            pe.setCantidad(cantidad);
+            int precioTotal = (int) (preciofinal * cantidad);
+            precioTotal = precioTotal - (precioTotal * descuento / 100);
+            System.out.println(descuento);
+            System.out.println(precioTotal);
+            pe.setPreciofinal(precioTotal);
+            pe.setProductosId(productosEJB.buscar(productosId));
+            pe.setDescuento(descuento);
+            promocionesEJB.crear(pe);
 
-        promocionesEJB.eliminar(p);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha eliminado correctamente  "));
-        System.out.println("ha eliminado  correctamente");
-        limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente  "));
+            System.out.println("ha insertado correctamente");
+            limpiar();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Error-----  "));
+
+            e.getMessage();
+        }
+
+    }
+/**
+ * Metodo que elimina la promocion
+ */
+    public void eliminarPromo() {
+        try {
+            Promociones p = promocionesEJB.buscar(id);
+
+            promocionesEJB.eliminar(p);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha eliminado correctamente  "));
+            System.out.println("ha eliminado  correctamente");
+            limpiar();
         } catch (Exception e) {
             e.getMessage();
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "no se ha podido eliminar el producto por que esta asignado a un registro  "));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "no se ha podido eliminar el producto por que esta asignado a un registro  "));
 
         }
-        
-     
-     
-     }
-     
-     public void buscarPromociones (){
-     
-       Promociones p = promocionesEJB.buscar(id);
+
+    }
+
+    public void buscarPromociones() {
+
+        Promociones p = promocionesEJB.buscar(id);
         if (p != null) {
-             preciofinal=p.getPreciofinal();
-             descuento=p.getDescuento();
-             fechafin=p.getFechafin();
+            preciofinal = p.getPreciofinal();
+            descuento = p.getDescuento();
+            fechafin = p.getFechafin();
             descripcion = p.getDescripcion();
-            cantidad=p.getCantidad();
-        productosId=p.getProductosId().getId();
+            cantidad = p.getCantidad();
+            productosId = p.getProductosId().getId();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha encontrado correctamente "));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informacion", "No se encontro nada "));
         }
 
         System.out.println("ha encontrado  correctamente");
-     
-     }
-    
-    private void limpiar() {    
-                       
+
+    }
+
+    private void limpiar() {
+
         setDescripcion(null);
         setDescuento(Short.MAX_VALUE);
         setFechafin(null);
         setPreciofinal(0);
         setId(0);
-        
+
     }
 
     public int getCantidad() {
@@ -210,5 +212,5 @@ public class PromocionesManagedBean implements Serializable{
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
+
 }

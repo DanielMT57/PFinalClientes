@@ -28,16 +28,16 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class ProductoBean implements Serializable {
 
-
+        // Controlador de la pagina productos
     @EJB
-    ProductoClientesEJB productosEJB;
+    ProductoClientesEJB productosEJB; // instancio los ejbs necesarios en este caso de prodcutos
     
     @EJB
     private CatalogoClienteEJB catalogClienteEJB;
  
     
    private List<Productos> productos;
-
+ // cargo los productos persistidos en la base de datos
     public List<Productos> getProductos() {
         productos=productosEJB.listarTodos();
         return productos;
