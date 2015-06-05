@@ -2,16 +2,20 @@ package com.mycompany;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Abono
- *
+  * Entity implementation class for Entity: Abono
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 
 public class Abono implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
 
     @Id
     private int id;
@@ -24,10 +28,17 @@ public class Abono implements Serializable {
     @Column(name = "pago")
     private int pago;
     private static final long serialVersionUID = 1L;
+    
+    /*
+    *Clase constructora con metodo super
+    */
 
     public Abono() {
         super();
     }
+    /*
+    * Metodos getters y setters
+    */
 
     public int getId() {
         return id;

@@ -15,12 +15,17 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: Detallepedido
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 @Table(name = "Detallepedido")
 public class Detallepedido implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
 
    @EmbeddedId
     protected DetallepedidoPK detallepedidoPK;   
@@ -39,9 +44,15 @@ public class Detallepedido implements Serializable {
     @JoinColumn(name = "pedidos_id", referencedColumnName = "Id")
     private Pedidos pedidos;
 
-
+    /*
+    *Metodo constructor sin parametros
+    */
     public Detallepedido() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public Detallepedido(DetallepedidoPK detallepedidoPK, int cantidad, double preciounitario, Character sincronizado, Productos productos, Pedidos pedidos) {
         this.detallepedidoPK = detallepedidoPK;
@@ -51,6 +62,10 @@ public class Detallepedido implements Serializable {
         this.productos = productos;
         this.pedidos = pedidos;
     }
+    
+    /*
+    * Metodos getters y setters
+    */ 
 
     public DetallepedidoPK getDetallepedidoPK() {
         return detallepedidoPK;

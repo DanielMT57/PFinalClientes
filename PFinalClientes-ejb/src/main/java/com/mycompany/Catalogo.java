@@ -20,12 +20,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author german
+ * Entity implementation class for Entity: Catalogo
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 @Table(name = "Catalogo")
 public class Catalogo implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */    
+    
     @Id
     @Column(name = "Id")
     private int id;
@@ -41,9 +47,17 @@ public class Catalogo implements Serializable {
     private BigInteger cantidadproductos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "catalogoId")
     private Collection<Paginas> paginasCollection;
+    
+    /*
+    *Clase constructora sin parametros
+    */
 
     public Catalogo() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public Catalogo(int id, Date fechainicio, Date fechafin, BigInteger cantidadpaginas, BigInteger cantidadproductos, Collection<Paginas> paginasCollection) {
         this.id = id;
@@ -54,7 +68,9 @@ public class Catalogo implements Serializable {
         this.paginasCollection = paginasCollection;
     }
 
-
+    /*
+    * Metodos getters y setters
+    */ 
 
     public int getId() {
         return id;

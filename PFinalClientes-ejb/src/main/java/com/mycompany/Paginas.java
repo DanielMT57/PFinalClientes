@@ -17,13 +17,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: Paginas
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
+
 @Entity
 @Table(name = "Paginas")
 public class Paginas implements Serializable {
 
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
+    
     @Id
     @Column(name = "Id")
     private int id;
@@ -35,9 +41,17 @@ public class Paginas implements Serializable {
     private BigInteger numero;
     @OneToMany(mappedBy = "paginasId")
     private List<Areaspagina> areaspaginaCollection;
+    
+    /*
+    *Metodo constructor sin parametros
+    */
 
     public Paginas() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public Paginas(int id, String categoria_Id, Catalogo catalogoId, BigInteger numero, List<Areaspagina> areaspaginaCollection) {
         this.id = id;
@@ -46,6 +60,10 @@ public class Paginas implements Serializable {
         this.numero = numero;
         this.areaspaginaCollection = areaspaginaCollection;
     }
+    
+    /*
+    * Metodos getters y setters
+    */ 
 
     public int getId() {
         return id;
@@ -86,6 +104,5 @@ public class Paginas implements Serializable {
     public void setAreaspaginaCollection(List<Areaspagina> areaspaginaCollection) {
         this.areaspaginaCollection = areaspaginaCollection;
     }
-
-   
+  
 }

@@ -13,19 +13,24 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.eclipse.persistence.annotations.ClassExtractor;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: Personas
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
+
 @Entity
 @Table(name = "PERSONAS")
 @Inheritance(strategy = InheritanceType.JOINED)
 @ClassExtractor(PersonasExtractor.class)
 public class Personas implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
 
     @Id
     @Column(name = "cedula")
@@ -44,15 +49,19 @@ public class Personas implements Serializable {
     private String email;
     @OneToMany(mappedBy = "persona")
     private List<Agenda> agendas;
-//    @OneToOne(mappedBy = "cedula")
-//    private Afiliados afiliados;
     @OneToMany(mappedBy = "personaCliente")
     private List<VentasClientes> ventaClientes;
     
-    //VentaClientes?
+    /*
+    *Metodo constructor sin parametros
+    */
 
     public Personas() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public Personas(int cedula, String ciudadesId, Long telefono, String nombre, String apellidos, String direccion, String email, List<Agenda> agendas, List<VentasClientes> ventaClientes) {
         this.cedula = cedula;
@@ -65,6 +74,10 @@ public class Personas implements Serializable {
         this.agendas = agendas;
         this.ventaClientes = ventaClientes;
     }
+    
+    /*
+    * Metodos getters y setters
+    */     
 
     public int getCedula() {
         return cedula;

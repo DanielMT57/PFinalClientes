@@ -14,13 +14,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * 
- * @author german
+  * Entity implementation class for Entity: Productos
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 
 @Entity
 @Table(name = "Productos")
 public class Productos implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */    
 	@Id
 	@Column(name = "id")
 	private int id;       
@@ -48,9 +53,17 @@ public class Productos implements Serializable {
 	private List<Areaspagina> areasPaginaProductos;
 	@OneToMany(mappedBy = "productos")
 	private List<DetalleVenta> detalleventaProductos;
+        
+    /*
+    *Metodo constructor sin parametros
+    */
 
     public Productos() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public Productos(int id, String color, String categoria, String marca, int cantidad, int peso, double precioCompra, double precioVenta, String descripcion, List<Detallepedido> detallepedidoProductos, List<Promociones> promocionesProductos, List<Areaspagina> areasPaginaProductos, List<DetalleVenta> detalleventaProductos) {
         this.id = id;
@@ -67,6 +80,10 @@ public class Productos implements Serializable {
         this.areasPaginaProductos = areasPaginaProductos;
         this.detalleventaProductos = detalleventaProductos;
     }
+    
+    /*
+    * Metodos getters y setters
+    */
 
     public int getId() {
         return id;
@@ -170,9 +187,5 @@ public class Productos implements Serializable {
 
     public void setDetalleventaProductos(List<DetalleVenta> detalleventaProductos) {
         this.detalleventaProductos = detalleventaProductos;
-    }
-    
-    
-
-	
+    }	
 }

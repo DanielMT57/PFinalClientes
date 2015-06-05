@@ -14,12 +14,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
- * @author german
+ * Entity implementation class para Entity: Areaspagina
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 @Table(name = "Areaspagina")
 public class Areaspagina implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
 
     @Id
     @Column(name = "Id")
@@ -33,16 +38,28 @@ public class Areaspagina implements Serializable {
     @ManyToOne
     @JoinColumn(name = "promociones_Id", referencedColumnName = "Id")
     private Promociones promocionesId;
+    
+    /*
+    *Metodo constructor sin parametros
+    */
 
     public Areaspagina() {
     }
-
+    
+    /*
+    *Metodo constructor con parametros
+    */
+    
     public Areaspagina(int id, Promociones promocionesId, Productos productosId, Paginas paginasId) {
         this.id = id;
         this.promocionesId = promocionesId;
         this.productosId = productosId;
         this.paginasId = paginasId;
     }
+    
+    /*
+    * Metodos getters y setters
+    */
 
     public int getId() {
         return id;

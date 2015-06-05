@@ -11,17 +11,19 @@ import org.eclipse.persistence.sessions.Session;
 
 /**
  *
- * @author Daniel
+ * @author German Andres Velasco Ortiz -gersandres@gmail.com
  */
-class PedidosExtractor extends ClassExtractor{
+class PedidosExtractor extends ClassExtractor {
 
+    /*
+     *Clase contructora
+     */
     @Override
     public Class extractClassFromRow(Record record, Session sn) {
-       if(record.containsKey("valor")){
-           return Despachos.class;
-       }else{
-           return Pedidos.class;
-       }
+        if (record.containsKey("valor")) {
+            return Despachos.class;
+        } else {
+            return Pedidos.class;
+        }
     }
-    
 }

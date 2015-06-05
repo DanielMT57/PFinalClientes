@@ -19,20 +19,24 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: VentasClientes
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
+
 @Entity
 @Table(name = "VentasClientes")
 public class VentasClientes implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+       
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */ 
     @Id
     @Column(name = "Id")
     private int id;
     @ManyToOne
     @JoinColumn(name = "afiliados_cedula", referencedColumnName = "cedula")   
-   // private Afiliados afiliado;
     private Personas personaCliente;
     @Column(name = "cuotas")
     private int cuotas;
@@ -47,9 +51,17 @@ public class VentasClientes implements Serializable {
     private List<DetalleVenta> detalleventaCollection;   
     @OneToMany(mappedBy = "Venta")
     private List<Abono> abonos;
+    
+    /*
+    *Metodo constructor sin parametros
+    */     
 
     public VentasClientes() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public VentasClientes(int id, Personas personaCliente, int cuotas, Date fecha, double precioTotal, double saldo, List<DetalleVenta> detalleventaCollection, List<Abono> abonos) {
         this.id = id;
@@ -61,6 +73,10 @@ public class VentasClientes implements Serializable {
         this.detalleventaCollection = detalleventaCollection;
         this.abonos = abonos;
     }
+    
+    /*
+    * Metodos getters y setters
+    */
 
     public int getId() {
         return id;
@@ -125,5 +141,4 @@ public class VentasClientes implements Serializable {
     public void setAbonos(List<Abono> abonos) {
         this.abonos = abonos;
     }
- 
 }

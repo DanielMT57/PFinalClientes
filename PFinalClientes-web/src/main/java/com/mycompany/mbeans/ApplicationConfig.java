@@ -4,13 +4,12 @@
  * and open the template in the editor.
  */
 package com.mycompany.mbeans;
-
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
  *
- * @author german
+ *  @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {

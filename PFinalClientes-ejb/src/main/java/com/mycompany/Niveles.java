@@ -14,12 +14,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Daniel Moncada Tabares
+  * Entity implementation class for Entity: Niveles
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
+
 @Entity
 @Table(name="niveles")
 public class Niveles implements Serializable{
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
+    
     @Id
     @Column(name = "id")
     private int id;
@@ -33,11 +40,17 @@ public class Niveles implements Serializable{
     private int descuento;
     @OneToMany(mappedBy = "nivel")
     private List<Afiliados> afiliados;
+    
+    /*
+    *Metodo constructor sin parametros
+    */
 
     public Niveles() {
     }
     
-    
+    /*
+    *Metodo constructor conparametros
+    */
 
     public Niveles(int id, String descripcion, int numVentas, int numAfiliados, int descuento, List<Afiliados> afiliados) {
         this.id = id;
@@ -48,6 +61,10 @@ public class Niveles implements Serializable{
         this.afiliados = afiliados;
     }
 
+    /*
+    * Metodos getters y setters
+    */ 
+    
     public int getId() {
         return id;
     }

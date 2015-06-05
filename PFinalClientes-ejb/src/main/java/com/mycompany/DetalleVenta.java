@@ -16,33 +16,43 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: DetalleVenta
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 @Table(name = "DetalleVenta")
 public class DetalleVenta implements Serializable {
     
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */     
+    
     @EmbeddedId
     protected DetalleVentaPK DetalleVentaPK;
-
     @MapsId("ventasClientesId")
     @ManyToOne
     @JoinColumn(name = "ventasclientes_id", referencedColumnName = "Id")
-    private VentasClientes ventasClientes;
-    
+    private VentasClientes ventasClientes;   
     @MapsId("productosId")
     @ManyToOne
     @JoinColumn(name = "Productos_id", referencedColumnName = "Id")
-    private Productos productos;
-    
+    private Productos productos;   
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "preciounitario")
     private double preciounitario;
+    
+    /*
+    *Metodo constructor din parametros
+    */
 
     public DetalleVenta() {
     }
+    
+    /*
+    * Metodo consctructor con parametros
+    */
 
     public DetalleVenta(DetalleVentaPK DetalleVentaPK, VentasClientes ventasClientes, Productos productos, int cantidad, double preciounitario) {
         this.DetalleVentaPK = DetalleVentaPK;
@@ -51,6 +61,10 @@ public class DetalleVenta implements Serializable {
         this.cantidad = cantidad;
         this.preciounitario = preciounitario;
     }
+    
+    /*
+    * Metodos getters y setters
+    */    
 
     public DetalleVentaPK getDetalleVentaPK() {
         return DetalleVentaPK;
@@ -90,8 +104,5 @@ public class DetalleVenta implements Serializable {
 
     public void setPreciounitario(double preciounitario) {
         this.preciounitario = preciounitario;
-    }
-
-   
-   
+    } 
 }

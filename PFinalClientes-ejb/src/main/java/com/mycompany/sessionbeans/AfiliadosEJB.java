@@ -9,22 +9,19 @@ import com.mycompany.Afiliados;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 /**
  *
- * @author Daniel
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Stateless
 @LocalBean
 public class AfiliadosEJB extends EJBGenericoCliente<Afiliados>{
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     /**
      * Lista de ciudades de los afiliados
-     * @return 
+     * @return Resulrado del listado
      */
     public List<String> getCiudades(){
         Query q= getEm().createNamedQuery(Afiliados.BUSCAR_CIUDADES);

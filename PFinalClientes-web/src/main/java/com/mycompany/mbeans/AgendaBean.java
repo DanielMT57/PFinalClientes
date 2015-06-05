@@ -7,17 +7,11 @@ package com.mycompany.mbeans;
 
 import com.mycompany.Afiliados;
 import com.mycompany.Agenda;
-import com.mycompany.Catalogo;
-import com.mycompany.Personas;
-import com.mycompany.Productos;
 import com.mycompany.sessionbeans.AfiliadosEJB;
 import com.mycompany.sessionbeans.AgendaEJB;
 import com.mycompany.sessionbeans.CatalogoClienteEJB;
 import com.mycompany.sessionbeans.PersonaEJB;
-
 import com.mycompany.sessionbeans.ProductoClientesEJB;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -31,13 +25,15 @@ import javax.inject.Named;
 
 /**
  *
- * @author german
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "AgendaBean")
 @ViewScoped
 public class AgendaBean implements Serializable {
-//Managed bean de la agenda instancio los ejbs necesarios para el funcionamiento de la pagina
+    /*
+     *Managed bean de la agenda instancio los ejbs necesarios para el funcionamiento de la pagina
+     */
 
     @EJB
     ProductoClientesEJB productosEJB;
@@ -56,13 +52,19 @@ public class AgendaBean implements Serializable {
     private List<Afiliados> afiliados;
 
     private List<Agenda> agendas;
-//atributos que haran referencia la vista 
+    /*
+     *atributos que haran referencia a la vista
+     */
+
     private int id;
     private Date fecha;
     private Date hora;
     private int personaId;
     private String descripcion;
 
+    /*
+     *getters & setters
+     */
     public List<Afiliados> getAfiliados() {
         return afiliados;
     }
@@ -70,7 +72,6 @@ public class AgendaBean implements Serializable {
     public void setAfiliados(List<Afiliados> afiliados) {
         this.afiliados = afiliados;
     }
-//Getters y setters de estos atributos
 
     public int getId() {
         return id;
@@ -113,7 +114,7 @@ public class AgendaBean implements Serializable {
     }
 
     /**
-     * POSt construct que va a cargar la lista de afiliados
+     * PostConstruct que va a cargar la lista de afiliados
      */
     @PostConstruct
     public void postConstruct() {
@@ -137,14 +138,14 @@ public class AgendaBean implements Serializable {
             a.setHora(hora);
             a.setDescripcion(descripcion);
             a.setPersona(afiliadoEJB.buscar(personaId));
-// seteo los nuevos valores y creo la entidad
+            // seteo los nuevos valores y creo la entidad
             agendaEJB.crear(a);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
             System.out.println("ha insertado correctamente");
             limpiar();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No se ha podido insertar "));
-//en caso de no persisitir enviar mensaje de alerta
+            //en caso de no persisitir enviar mensaje de alerta
             e.getMessage();
         }
 
@@ -158,7 +159,6 @@ public class AgendaBean implements Serializable {
         setFecha(null);
         setHora(null);
         setId(0);
-
     }
 
     /**
@@ -166,19 +166,16 @@ public class AgendaBean implements Serializable {
      */
     public void buscarAgenda() {
         Agenda a = agendaEJB.buscar(id);
-// si no es nullo el resultado, carga los valores
+        // si no es nullo el resultado, carga los valores
         if (a != null) {
-
             fecha = a.getFecha();
             hora = a.getFecha();
             descripcion = a.getDescripcion();
             personaId = a.getPersona().getCedula();
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha encontrado correctamente "));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informacion", "No se encontro nada "));
         }
-
         System.out.println("ha encontrado  correctamente");
     }
 
@@ -193,14 +190,12 @@ public class AgendaBean implements Serializable {
             a.setHora(hora);
             a.setDescripcion(descripcion);
             a.setPersona(afiliadoEJB.buscar(personaId));
-
             agendaEJB.editar(a);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
             System.out.println("ha insertado correctamente");
             limpiar();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No se ha podido insertar "));
-
             e.getMessage();
         }
 
@@ -212,7 +207,6 @@ public class AgendaBean implements Serializable {
     public void eliminarAgenda() {
         try {
             Agenda a = agendaEJB.buscar(id);
-
             agendaEJB.eliminar(a);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha eliminado correctamente "));
             System.out.println("ha eliminado  correctamente");
@@ -220,8 +214,6 @@ public class AgendaBean implements Serializable {
         } catch (Exception e) {
             e.getMessage(); // en caso de no eliminarla enviar mensaje que no se puede eliminar
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "no se ha podido eliminar  "));
-
         }
-
     }
 }

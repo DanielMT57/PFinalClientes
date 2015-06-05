@@ -19,12 +19,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: Promociones
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
+
 @Entity
 @Table(name = "Promociones")
 public class Promociones implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */ 
 
     @Id
     @Column(name = "Id")
@@ -45,9 +51,17 @@ public class Promociones implements Serializable {
     private int preciofinal;
     @OneToMany(mappedBy = "promocionesId")
     private List<Areaspagina> areaspaginaCollection;
+    
+    /*
+    *Metodo constructor sin parametros
+    */    
 
     public Promociones() {
     }
+    
+    /*
+    *Metodo constructor con parametros
+    */
 
     public Promociones(int id, Productos productosId, int cantidad, String descripcion, Date fechafin, Short descuento, int preciofinal, List<Areaspagina> areaspaginaCollection) {
         this.id = id;
@@ -59,6 +73,10 @@ public class Promociones implements Serializable {
         this.preciofinal = preciofinal;
         this.areaspaginaCollection = areaspaginaCollection;
     }
+    
+    /*
+    * Metodos getters y setters
+    */
 
     public int getId() {
         return id;

@@ -8,27 +8,25 @@ package com.mycompany;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: Despachos
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 @Table(name = "Despachos")
-//@PrimaryKeyJoinColumn(name = "Id", referencedColumnName = "Id")
-
-//@PrimaryKeyJoinColumn(name = "pedidos_id", referencedColumnName = "Id")
 public class Despachos implements Serializable  {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */    
     
     @Id
     @Column(name = "Pedidos_id")
@@ -40,10 +38,18 @@ public class Despachos implements Serializable  {
     private double valor;
     @Column(name = "sincronizado")
     private Character sincronizado;
+    
+    /*
+    *Clase constructora sin parametros
+    */
 
     public Despachos() {
     }
-
+    
+    /*
+    * Clase constructora con parametros
+    */
+    
     public Despachos(Date fecha, double valor, Character sincronizado,int id) {
         this.id=id;
         this.fecha = fecha;
@@ -51,7 +57,10 @@ public class Despachos implements Serializable  {
         this.sincronizado = sincronizado;
     }
 
-
+    /*
+    * Metodos getters y setters
+    */
+    
     public Date getFecha() {
         return fecha;
     }

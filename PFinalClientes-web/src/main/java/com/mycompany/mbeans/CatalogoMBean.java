@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -24,18 +23,22 @@ import javax.faces.view.ViewScoped;
 @Named(value = "catalogoMBean")
 @ViewScoped
 public class CatalogoMBean implements Serializable {
-//atributos que haran referencia la pagina de catalogos
-
+    /*
+    *atributos que haran referencia la pagina de catalogos
+    */
     private int id;
     private Date fechaInicio;
     private Date fechaFin;
     private int cantidadPaginas;
     private int cantidadProductos;
-
-    //instancio un objeto tipo catalogo ejb
+    /*
+    *instancio un objeto tipo catalogo ejb
+    */
     @EJB
     private CatalogoClienteEJB catalogClienteEJB;
-
+    /*
+     *getters & setters
+     */
     public int getId() {
         return id;
     }

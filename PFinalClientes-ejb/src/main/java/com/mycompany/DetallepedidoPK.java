@@ -9,28 +9,44 @@ package com.mycompany;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
 
 /**
- *
- * @author german
+  * Entity implementation class for Entity: DetallepedidoPK
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
+
 @Embeddable
 public class DetallepedidoPK implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
 
-     @Column(name = "pedidos_id")
+    @Column(name = "pedidos_id")
     private int pedidosId;
     @Column(name = "productos_id")
     private int productosId;
-    public DetallepedidoPK() {
-        //pruebas ...
+    
+    /*
+    *Metodo constructor sin parametros
+    */
+    public DetallepedidoPK() {       
     }
+    
+    /*
+    * Metodo constructor con parametros
+    */
 
     public DetallepedidoPK(int pedidosId, int productosId) {
         this.pedidosId = pedidosId;
         this.productosId = productosId;
     }
 
+    /*
+    * Metodos getters y setters
+    */     
+    
     public int getPedidosId() {
         return pedidosId;
     }
@@ -46,7 +62,4 @@ public class DetallepedidoPK implements Serializable {
     public void setProductosId(int productosId) {
         this.productosId = productosId;
     }
-
-
-
 }

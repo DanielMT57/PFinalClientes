@@ -2,17 +2,20 @@ package com.mycompany;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.*;
-import static javax.persistence.TemporalType.TIME;
 
 /**
- * Entity implementation class for Entity: Agenda
- *
+  * Entity implementation class for Entity: Agenda
+  * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Entity
 
 public class Agenda implements Serializable {
+    
+    /*
+    *Atributos que se requieren en esta clase
+    *Entidades que se relacionan en enta clase
+    */
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,11 +32,17 @@ public class Agenda implements Serializable {
     @ManyToOne
     @JoinColumn(name = "personas_cedula", referencedColumnName = "cedula")
     private Personas persona;
-    
 
-	public Agenda() {
-		super();
-	}   
+    /*
+     *Clase constructora con metodo super
+     */
+    public Agenda() {
+        super();
+    }
+    
+    /*
+    * Metodos getters y setters
+    */   
 
     public int getId() {
         return id;

@@ -8,7 +8,6 @@ package com.mycompany.mbeans;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.view.ViewScoped;
 import com.mycompany.Areaspagina;
 import com.mycompany.sessionbeans.AreasEJB;
@@ -24,16 +23,18 @@ import javax.ejb.EJB;
 @ViewScoped
 
 public class AreasBean implements Serializable {
-//controlador de la pagina Areas
-
+    /*
+    *Controlador de la pagina Areas
+    */
     @EJB
     private AreasEJB areasEJB;
-//instancio un objeto del ejb de areas  y cargo una lista de paginas
+    /*
+    *instancio un objeto del ejb de areas  y cargo una lista de paginas
+    */
     private List<Areaspagina> areas;
 
     public List<Areaspagina> getAreas() {
         areas = areasEJB.listarTodos();
         return areas;
     }
-
 }
