@@ -11,12 +11,11 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author german
+ * @author German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Stateless
 @LocalBean
 public class CatalogoClienteEJB extends EJBGenericoCliente<Catalogo>{
-
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }

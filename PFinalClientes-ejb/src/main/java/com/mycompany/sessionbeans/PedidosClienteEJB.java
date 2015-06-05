@@ -13,19 +13,20 @@ import javax.persistence.Query;
 
 /**
  *
- * @author german
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Stateless
 @LocalBean
 public class PedidosClienteEJB extends EJBGenericoCliente<Pedidos>{
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    /*
+    * Metodo que me muestra una lista de pedidos 
+     *@return listado con todos los pedidos
+    */
     
      public List<Pedidos> listarPedidos(){
         Query q=super.getEm().createNamedQuery(Pedidos.CONSULTA_LISTARTODOS).setParameter("estado", "En proceso");
-        
-       // Query q=super.getEm().createNativeQuery("Select fecha from Pedidos");
         return q.getResultList();
     }
 }

@@ -13,13 +13,16 @@ import com.mycompany.Agenda;
 
 /**
  *
- * @author MAO
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Stateless
 @LocalBean
+/*
+ *ejb de la ajenda
+ */
 public class AgendaEJB  extends EJBGenericoCliente<Agenda>{
-
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    //ejb de la agenda
+
 }

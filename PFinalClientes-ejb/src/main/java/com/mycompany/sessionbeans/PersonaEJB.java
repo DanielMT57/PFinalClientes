@@ -12,7 +12,7 @@ import com.mycompany.Personas;
 
 /**
  *
- * @author MAO
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Stateless
 @LocalBean

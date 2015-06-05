@@ -12,12 +12,12 @@ import com.mycompany.Detallepedido;
 
 /**
  *
- * @author MAO
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @Stateless
 @LocalBean
 public class DetallePedidoEJB  extends EJBGenericoCliente<Detallepedido>{
-
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
