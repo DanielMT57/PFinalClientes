@@ -16,23 +16,28 @@ import javax.ejb.EJB;
 
 /**
  *
- * @author MAO
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "areasBean")
 @ViewScoped
 
 public class AreasBean implements Serializable {
+    
     /*
     *Controlador de la pagina Areas
     */
+    
     @EJB
     private AreasEJB areasEJB;
     /*
     *instancio un objeto del ejb de areas  y cargo una lista de paginas
     */
     private List<Areaspagina> areas;
-
+    
+    /*
+    *Constructor de la clase AreaBean
+    */
     public List<Areaspagina> getAreas() {
         areas = areasEJB.listarTodos();
         return areas;

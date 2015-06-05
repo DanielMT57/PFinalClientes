@@ -25,7 +25,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author  German Andres Velasco Ortiz -gersandres@gmail.com
+ * @author German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "AgendaBean")

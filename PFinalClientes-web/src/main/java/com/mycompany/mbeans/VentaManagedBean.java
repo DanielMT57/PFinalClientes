@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package com.mycompany.mbeans;
-
 import com.mycompany.Afiliados;
 import com.mycompany.DetalleVenta;
-
 import com.mycompany.Productos;
 import com.mycompany.VentasClientes;
 import com.mycompany.sessionbeans.AfiliadosEJB;
@@ -20,8 +18,6 @@ import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.EJBs;
-import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -29,13 +25,16 @@ import javax.inject.Named;
 
 /**
  *
- * @author MAO
+ * @author German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "ventaManagedBean")
 @ViewScoped
 public class VentaManagedBean implements Serializable {
-// Instancio los ejbs necesarios 
+    
+    /*
+    * Instancio los ejbs necesarios 
+    */
 
     @EJB
     private VentasClientesEJB ventasEJB;
@@ -45,23 +44,33 @@ public class VentaManagedBean implements Serializable {
     private ProductoClientesEJB productoEJB;
     @EJB
     private AfiliadosEJB afiliadosEJB;
-// atributos para la pagina venta
+    
+    /*
+    * atributos para la pagina venta
+    */
+
     private int id;
     private int afiliadoCedula;
     private int cuota;
     private Date fecha;
     private double preciototal;
     private double saldo;
-
     private int productoId;
     private int cantidad;
     private double preciounitario;
     private int idventaList;
-//listas de productos afiliados ventas y detalles 
+    
+    /*
+    * listas de productos afiliados ventas y detalles
+    */
     private List<Productos> productos;
     private List<Afiliados> afiliados;
     private List<VentasClientes> ventas;
     private List<DetalleVenta> detalles;
+    
+    /*
+    * Metodos getters y setters
+    */
 
     public AfiliadosEJB getAfiliadosEJB() {
         return afiliadosEJB;
@@ -151,14 +160,6 @@ public class VentaManagedBean implements Serializable {
         this.preciounitario = preciounitario;
     }
 
-    @PostConstruct
-    public void postConstruct() {
-
-        afiliados = afiliadosEJB.listarTodos();
-        productos = productoEJB.listarTodos();
-
-    }
-
     public List<Afiliados> getAfiliados() {
         return afiliados;
     }
@@ -175,9 +176,21 @@ public class VentaManagedBean implements Serializable {
     public void setIdventaList(int idventaList) {
         this.idventaList = idventaList;
     }
-/**
- * Metodo qeu se encarga de crear una venta
- */
+
+    /*
+     * Metodo PosConstruct con parametros
+     */
+    
+    @PostConstruct
+    public void postConstruct() {
+        afiliados = afiliadosEJB.listarTodos();
+        productos = productoEJB.listarTodos();
+    }
+
+    /**
+     * Metodo qeu se encarga de crear una venta
+     */
+    
     public void crearVenta() {
         VentasClientes v = new VentasClientes();
         v.setId(id);
@@ -187,16 +200,16 @@ public class VentaManagedBean implements Serializable {
         v.setPrecioTotal(preciototal);
         v.setSaldo(saldo);
         ventasEJB.crear(v);
-        // ventas=ventasEJB.listarTodos();
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente  "));
         System.out.println("ha insertado correctamente");
         limpiar();
 
     }
-/**
- * Metodo que se encarga de buscar una venta
- */
+
+    /**
+     * Metodo que se encarga de buscar una venta
+     */
+    
     public void buscarVenta() {
         VentasClientes pe = ventasEJB.buscar(id);
         if (pe != null) {
@@ -205,15 +218,16 @@ public class VentaManagedBean implements Serializable {
             fecha = pe.getFecha();
             saldo = pe.getSaldo();
             preciototal = pe.getPrecioTotal();
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha encontrado correctamente "));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informacion", "No se encontro nada "));
         }
         System.out.println("ha encontrado  correctamente");
-        //   limpiar ();
-
     }
+    
+     /**
+     * Metodo que se encarga de editar una venta
+     */
 
     public void editarVenta() {
         VentasClientes v = new VentasClientes();
@@ -224,13 +238,14 @@ public class VentaManagedBean implements Serializable {
         v.setPrecioTotal(preciototal);
         v.setSaldo(saldo);
         ventasEJB.editar(v);
-        // ventas=ventasEJB.listarTodos();
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha editado correctamente  "));
         System.out.println("ha editado correctamente");
         limpiar();
-
     }
+    
+     /**
+     * Metodo que se encarga de limpiar una venta
+     */
 
     private void limpiar() {
         setId(0);
@@ -239,9 +254,12 @@ public class VentaManagedBean implements Serializable {
         setPreciototal(0);
         setSaldo(0);
     }
+    
+     /**
+     * Metodo que se encarga de crear un detalle
+     */
 
     public void crearDetalle() {
-
         try {
             DetalleVenta de = new DetalleVenta();
             de.setProductos(productoEJB.buscar(productoId));
@@ -254,16 +272,23 @@ public class VentaManagedBean implements Serializable {
             limpiar2();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "No inserto ya fue vendido este producto"));
-
             e.getMessage();
         }
 
     }
+    
+     /**
+     * Metodo que se encarga de hacer un listado de detalles
+     */
 
     public List<DetalleVenta> getDetalles() {
         detalles = detalleEJB.listarTodos();
         return detalles;
     }
+    
+     /**
+     * Metodo que se encarga de limpiar una venta
+     */
 
     private void limpiar2() {
         setPreciounitario(0);

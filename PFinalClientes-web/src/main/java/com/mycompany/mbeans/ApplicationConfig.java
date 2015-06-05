@@ -9,7 +9,7 @@ import javax.ws.rs.core.Application;
 
 /**
  *
- *  @author  German Andres Velasco Ortiz -gersandres@gmail.com
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {

@@ -17,12 +17,13 @@ import javax.faces.view.ViewScoped;
 
 /**
  *
- * @author german
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "catalogoMBean")
 @ViewScoped
 public class CatalogoMBean implements Serializable {
+    
     /*
     *atributos que haran referencia la pagina de catalogos
     */
@@ -31,9 +32,11 @@ public class CatalogoMBean implements Serializable {
     private Date fechaFin;
     private int cantidadPaginas;
     private int cantidadProductos;
+    
     /*
     *instancio un objeto tipo catalogo ejb
     */
+    
     @EJB
     private CatalogoClienteEJB catalogClienteEJB;
     /*
@@ -94,6 +97,7 @@ public class CatalogoMBean implements Serializable {
      *
      * @return lista de catalogos persistidos
      */
+    
     public List<Catalogo> getCatalogos() {
         catalogos = catalogClienteEJB.listarTodos();
         return catalogos;

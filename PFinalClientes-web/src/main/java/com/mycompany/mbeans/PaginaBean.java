@@ -9,7 +9,6 @@ package com.mycompany.mbeans;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.view.ViewScoped;
 import com.mycompany.Paginas;
 import com.mycompany.sessionbeans.PaginaEJB;
@@ -19,29 +18,41 @@ import javax.ejb.EJB;
 
 /**
  *
- * @author MAO
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "paginaBean")
 @ViewScoped
-public class PaginaBean implements Serializable{
+public class PaginaBean implements Serializable {
 
-    //atributos necesarios para la construccion de la pagina
-       private int idpagina;
+    /*
+     *atributos necesarios para la construccion de la pagina
+     */
+    private int idpagina;
     private int categoriaID;
     private int catalogoID;
     private BigInteger numero;
-   
-    //instancio los ejbs 
+    
+    /*
+    *instancio los ejbs 
+    */
     @EJB
     private PaginaEJB paginaEJB;
-    
+
     private List<Paginas> paginas;
-//cargo la lista de paginas persistidas
+    
+    /*
+    *cargo la lista de paginas persistidas
+    */
+
     public List<Paginas> getPaginas() {
-        paginas=paginaEJB.listarTodos();
+        paginas = paginaEJB.listarTodos();
         return paginas;
     }
+    
+    /*
+    * Metodos getters y setters
+    */ 
 
     public int getIdpagina() {
         return idpagina;
@@ -74,8 +85,5 @@ public class PaginaBean implements Serializable{
     public void setNumero(BigInteger numero) {
         this.numero = numero;
     }
-    
-    
-    
-    
+
 }

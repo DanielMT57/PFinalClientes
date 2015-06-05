@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 package com.mycompany.mbeans;
-
 import com.mycompany.Niveles;
 import com.mycompany.Personas;
 import com.mycompany.Afiliados;
-
 import com.mycompany.sessionbeans.PersonaEJB;
 import com.mycompany.sessionbeans.NivelesEJB;
 import com.mycompany.sessionbeans.AfiliadosEJB;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -26,14 +23,17 @@ import javax.faces.view.ViewScoped;
 
 /**
  *
- * @author german
+ * @author  German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "personaBean")
 @ViewScoped
 
 public class PersonaBean implements Serializable {
-//atributos para la pagina personas
+    
+    /*
+    * atributos para la pagina personas
+    */
 
     private int cedula;
     private int idCiudades;
@@ -46,11 +46,13 @@ public class PersonaBean implements Serializable {
     private List<Niveles> niveles;
     private List<Afiliados> afiliados;
     private int personaId;
+    private Date fechaAfiliacion;
+    private int idNiveles;
 
-    public List<Niveles> getNiveles() {
-        return niveles;
-    }
-// Instancio los ejbs necesarios
+    /*
+    * Instancio los ejbs necesarios
+    */
+    
     @EJB
     private PersonaEJB personasEJB;
 
@@ -60,10 +62,6 @@ public class PersonaBean implements Serializable {
     @EJB
     private AfiliadosEJB afiliadosEJB;
 
-    private Date fechaAfiliacion;
-
-    private int idNiveles;
-
     /**
      * Post construct que carga la lista de personas niveles y ciudades
      */
@@ -72,7 +70,14 @@ public class PersonaBean implements Serializable {
         personas = personasEJB.listarTodos();
         niveles = nivelesEJB.listarTodos();
         ciudades = afiliadosEJB.getCiudades();
-
+    }
+    
+     /*
+     * Mesodos getters & setters
+     */
+    
+    public List<Niveles> getNiveles() {
+        return niveles;
     }
 
     public int getCedula() {
@@ -156,17 +161,11 @@ public class PersonaBean implements Serializable {
         pe.setDireccion(direccion);
         pe.setEmail(email);
         pe.setCiudadesId(ciudad);
-
-// busca un afiliado por su cedula
+        // busca un afiliado por su cedula
         Afiliados a = afiliadosEJB.buscar(personaId);
-        //pe=personasEJB.buscar(pe.getCedula());
         Afiliados af = new Afiliados(nivelesEJB.buscar(idNiveles), fechaAfiliacion, '0', null, null, cedula, telefono, nombre, apellido, direccion, email, ciudad, a);
-
-//        af.setCedula(pe.getCedula());
-//        af.setNivel();
         // crea el afiliado y la persona
         afiliadosEJB.crear(af);
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Ha insertado correctamente "));
         System.out.println("ha insertado correctamente");
         limpiar();
@@ -180,7 +179,7 @@ public class PersonaBean implements Serializable {
         Personas p = personasEJB.buscar(cedula);
         Afiliados af = afiliadosEJB.buscar(cedula);
         if (p != null) {
-// en caso de que el resultado no sea null, obtengo los valores 
+            // en caso de que el resultado no sea null, obtengo los valores 
             telefono = p.getTelefono();
             direccion = p.getDireccion();
             email = p.getEmail();
@@ -202,8 +201,15 @@ public class PersonaBean implements Serializable {
         //   limpiar ();
 
     }
-    private List<Personas> personas; //listado de personas
-    private List<String> ciudades;// listado de ciudades
+    /*
+    * listado de personas
+    */
+    private List<Personas> personas; 
+    
+    /*
+    * listado de ciudades
+    */
+    private List<String> ciudades;
 
     public List<String> getCiudades() {
         return ciudades;
@@ -211,17 +217,15 @@ public class PersonaBean implements Serializable {
 
     /**
      * getter de Listado de personas
-     *
      * @return listado de personas
      */
     public List<Personas> getPersonas() {
         personas = personasEJB.listarTodos();
         return personas;
     }
-//     
-//     
-//
-// Metodo que setea los valores y limpia la pagina
+    /*
+    * Metodo que setea los valores y limpia la pagina
+    */
 
     private void limpiar() {
 
@@ -234,6 +238,10 @@ public class PersonaBean implements Serializable {
 
         this.setFechaAfiliacion(null);
     }
+    
+     /*
+     * Mesodos getters & setters
+     */
 
     public long getTelefono() {
         return telefono;
@@ -268,7 +276,6 @@ public class PersonaBean implements Serializable {
      * Metodo que edita las personas y los afiliados a su vez
      */
     public void editarPersonas() {
-
         Afiliados a = afiliadosEJB.buscar(cedula);
         a.setCedula(cedula);
         a.setCiudadesId(ciudad);

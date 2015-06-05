@@ -12,7 +12,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import com.mycompany.sessionbeans.ProductoClientesEJB;
 import com.mycompany.sessionbeans.PromocionesEJB;
-
 import com.mycompany.Productos;
 import com.mycompany.Promociones;
 import java.io.Serializable;
@@ -23,7 +22,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author MAO
+ * @author German Andres Velasco Ortiz -gersandres@gmail.com
  */
 @ManagedBean
 @Named(value = "promocionesManagedBean")
@@ -34,21 +33,30 @@ public class PromocionesManagedBean implements Serializable {
      * atributos de la pagina promociones
      */
     private int id;
-
     private int productosId;
     private String descripcion;
     private Date fechafin;
     private short descuento;
     private double preciofinal;
     private int cantidad;
-
+    
+    /*
+    * Instancio los ejbs necesarios 
+    */
     @EJB
-    private ProductoClientesEJB productosEJB;  //Instancio los ejbs necesarios 
-
+    private ProductoClientesEJB productosEJB; 
     @EJB
     private PromocionesEJB promocionesEJB;
-///Getters y setters de los atributos
-
+    
+    /*
+    * listado de promociones
+    */
+    private List<Promociones> promociones;
+    
+    /*
+    * Getters y setters de los atributos
+    */
+    
     public int getId() {
         return id;
     }
@@ -89,10 +97,19 @@ public class PromocionesManagedBean implements Serializable {
         this.descuento = descuento;
     }
 
-// listado de promociones
-    private List<Promociones> promociones;
+    public int getCantidad() {
+        return cantidad;
+    }
 
-    public List<Promociones> getPromociones() { //Metodo get de las promociones y las carga en la pagina
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    /*
+    * Metodo get de las promociones y las carga en la pagina
+    */
+
+    public List<Promociones> getPromociones() {
         promociones = promocionesEJB.listarTodos();
         return promociones;
     }
@@ -157,9 +174,10 @@ public class PromocionesManagedBean implements Serializable {
         }
 
     }
-/**
- * Metodo que elimina la promocion
- */
+    
+    /**
+     * Metodo que elimina la promocion
+     */
     public void eliminarPromo() {
         try {
             Promociones p = promocionesEJB.buscar(id);
@@ -175,9 +193,12 @@ public class PromocionesManagedBean implements Serializable {
         }
 
     }
+    
+     /**
+     * Metodo que busca las promociones que han sido insertadas
+     */
 
     public void buscarPromociones() {
-
         Promociones p = promocionesEJB.buscar(id);
         if (p != null) {
             preciofinal = p.getPreciofinal();
@@ -194,23 +215,18 @@ public class PromocionesManagedBean implements Serializable {
         System.out.println("ha encontrado  correctamente");
 
     }
+    
+    /*
+    * Metodo que limpia los campos de texto
+    */
 
     private void limpiar() {
-
         setDescripcion(null);
         setDescuento(Short.MAX_VALUE);
         setFechafin(null);
         setPreciofinal(0);
         setId(0);
 
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
 }
